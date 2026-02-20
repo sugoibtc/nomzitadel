@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+
+const takeaways = [
+  'Zenon is a Layer 1 blockchain with dual-ledger architecture',
+  'Transactions are feeless through the Plasma system',
+  'No VC funding, no premine — fair launch from day one',
+  'Native Bitcoin integration via trustless SPV interoperability',
+];
+---
+
+<BaseLayout title="What is Zenon Network?">
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">What is Zenon Network?</h1>
+
+    <KeyTakeaways items={takeaways} />
+
+    <div class="prose prose-lg max-w-none text-pistachio">
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">The Basics</h2>
+      <p>
+        Zenon Network, also known as the Network of Momentum (NoM), is a next-generation Layer 1 blockchain designed to be the infrastructure layer for a truly decentralized internet. Unlike most modern blockchains that launched with venture capital backing and token presales, Zenon emerged from a fair launch with no preferential treatment for insiders.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">How It Works</h2>
+      <p>
+        At its core, Zenon uses a unique dual-ledger architecture that combines the best of two worlds: a block-lattice structure (similar to Nano) for fast, lightweight transactions and a meta-DAG for consensus and security. This hybrid approach allows for:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>Near-instant transaction finality</li>
+        <li>Feeless transactions through the Plasma system</li>
+        <li>High throughput without sacrificing decentralization</li>
+        <li>Asynchronous transaction processing</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Feeless Transactions</h2>
+      <p>
+        One of Zenon's most distinctive features is its feeless transaction model. Instead of paying gas fees for every transaction, users generate "Plasma" by fusing QSR tokens or by performing a small proof-of-work computation. This Plasma is then consumed when sending transactions, making the network essentially free to use for everyday operations.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Why It Matters</h2>
+      <p>
+        In a world where most blockchains are controlled by venture capitalists and insiders, Zenon represents a return to the original ethos of cryptocurrency: decentralized, permissionless, and community-driven. Its Bitcoin-native approach means it does not compete with Bitcoin but rather complements it, providing infrastructure that Bitcoin cannot offer on its own while maintaining trustless interoperability.
+      </p>
+      <p class="mt-4">
+        The network is built by a distributed community of developers, researchers, and enthusiasts who believe in the long-term vision of decentralized infrastructure. There is no company behind Zenon, no CEO to call, no marketing department — just builders building.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Next Steps</h2>
+      <p>
+        Ready to go deeper? Explore the <a href="/learn/architecture" class="text-mint hover:text-jade">Architecture Deep Dive</a> to understand the technical foundations, or learn about <a href="/learn/bitcoin" class="text-mint hover:text-jade">Bitcoin + Zenon</a> to see how these two networks work together.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

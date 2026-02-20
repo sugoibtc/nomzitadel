@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+
+const takeaways = [
+  'ZNN is the primary token for governance, staking, and network fees',
+  'QSR generates Plasma for feeless transactions when fused',
+  'Fair launch — no VC allocation, no premine, no insider deals',
+  'Dual-token design separates monetary and utility functions',
+];
+---
+
+<BaseLayout title="ZNN & QSR Tokenomics">
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">ZNN & QSR: Dual-Token Design</h1>
+
+    <KeyTakeaways items={takeaways} />
+
+    <div class="prose prose-lg max-w-none text-pistachio">
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Why Two Tokens?</h2>
+      <p>
+        Many blockchains use a single token for everything: fees, staking, governance, and utility. While simpler, this creates conflicts. When gas fees spike, it affects stakers. When staking rewards inflate, it affects users. Zenon separates these concerns with two distinct tokens, each optimized for its specific purpose.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">ZNN: The Momentum Token</h2>
+      <p>
+        ZNN is the primary token of the Network of Momentum. Its functions include:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li><strong class="text-white">Pillar Staking:</strong> 15,000 ZNN required to run a Pillar (validator node)</li>
+        <li><strong class="text-white">Delegation:</strong> ZNN holders can delegate to Pillars to earn rewards</li>
+        <li><strong class="text-white">Governance:</strong> Vote on network proposals and protocol upgrades</li>
+        <li><strong class="text-white">Sentinel Staking:</strong> 5,000 ZNN + 50,000 QSR to run a Sentinel node</li>
+      </ul>
+      <p class="mt-4">
+        ZNN has a capped inflation rate that decreases over time, with emissions going to Pillars, Sentinels, delegators, and liquidity providers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">QSR: The Plasma Fuel</h2>
+      <p>
+        QSR (Quasar) is the utility token that powers feeless transactions through the Plasma system:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li><strong class="text-white">Plasma Generation:</strong> Fuse QSR to your address to generate Plasma over time</li>
+        <li><strong class="text-white">Feeless Transactions:</strong> Plasma is consumed instead of paying gas fees</li>
+        <li><strong class="text-white">Sentinel Requirements:</strong> 50,000 QSR needed alongside ZNN for Sentinel nodes</li>
+        <li><strong class="text-white">Pillar Spawning:</strong> QSR is burned when creating new Pillars</li>
+      </ul>
+      <p class="mt-4">
+        The fusion mechanism is non-custodial — your QSR remains yours, just locked. You can unfuse at any time to recover your tokens, though this removes your Plasma generation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Fair Launch</h2>
+      <p>
+        Unlike the vast majority of modern crypto projects, Zenon had no:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>Venture capital allocation</li>
+        <li>Team premine</li>
+        <li>Foundation treasury from genesis</li>
+        <li>Private sale at discounted prices</li>
+        <li>Insider deals or SAFT agreements</li>
+      </ul>
+      <p class="mt-4">
+        The initial distribution came from a public "xStakes" process where participants provided Bitcoin to receive ZNN and QSR. No preferential treatment, no insider advantages — everyone had the same opportunity.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Economic Design Philosophy</h2>
+      <p>
+        The dual-token model creates interesting economic dynamics:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>High network usage increases QSR demand (more Plasma needed)</li>
+        <li>QSR is burned during Pillar creation, making it deflationary under certain conditions</li>
+        <li>ZNN staking reduces circulating supply while securing the network</li>
+        <li>Both tokens are needed for Sentinels, creating interdependency</li>
+      </ul>
+      <p class="mt-4">
+        This design aims to align long-term incentives: those who stake and participate benefit, while short-term speculation is less rewarded than active network participation.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Current Supply</h2>
+      <p>
+        Both tokens have relatively small supplies compared to most cryptocurrencies, with controlled inflation going to network participants. The exact figures can be verified on-chain through any Zenon block explorer.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

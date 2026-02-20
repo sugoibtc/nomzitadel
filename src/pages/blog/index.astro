@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = [
+  {
+    title: 'Why New Tokens? What Zenon Has to Do With Bitcoin',
+    excerpt: 'The most common question from Bitcoiners. Here is why ZNN and QSR exist and how they serve Bitcoin — not compete with it.',
+    date: '2026-02-20',
+    category: 'BTC + Zenon',
+    slug: 'btc-thesis-why-new-tokens',
+  },
+  {
+    title: 'Dual-Ledger Architecture: What Makes Zenon Different',
+    excerpt: 'Block-lattice meets meta-DAG. Here is what that actually means and why it matters.',
+    date: '2026-02-21',
+    category: 'Architecture & Tech',
+    slug: 'zenon-dual-ledger',
+  },
+  {
+    title: 'The Bear Market Is Where Real Ones Build',
+    excerpt: 'Everyone left. The builders stayed. Here is what is happening in Zenon while the market looks away.',
+    date: '2026-02-22',
+    category: 'Bear Market',
+    slug: 'bear-market-builders',
+  },
+];
+---
+
+<BaseLayout title="Blog">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Blog</h1>
+      <p class="text-xl text-pistachio/80">
+        Insights, analysis, and updates from the Zenon community.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <BlogCard {...post} />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

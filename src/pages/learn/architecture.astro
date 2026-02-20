@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+
+const takeaways = [
+  'Block-lattice provides individual account chains for parallel transaction processing',
+  'Meta-DAG layer handles consensus and provides global ordering',
+  'Plasma system enables feeless transactions through QSR fusion',
+  'Network of Momentum consensus achieves security without energy waste',
+];
+---
+
+<BaseLayout title="Dual-Ledger Architecture">
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">Dual-Ledger Architecture</h1>
+
+    <KeyTakeaways items={takeaways} />
+
+    <div class="prose prose-lg max-w-none text-pistachio">
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">The Block-Lattice Foundation</h2>
+      <p>
+        At the base layer, Zenon uses a block-lattice structure where each account has its own blockchain. When you send tokens, you create a "send" block on your chain, and the recipient creates a "receive" block on theirs. This separation means transactions can be processed in parallel — your transaction does not wait in line behind everyone else's.
+      </p>
+      <p class="mt-4">
+        This design eliminates the global bottleneck found in traditional blockchains like Ethereum, where every transaction competes for space in the next block. Instead, the network can process thousands of transactions simultaneously across different account chains.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">The Meta-DAG Consensus Layer</h2>
+      <p>
+        While the block-lattice handles individual transactions, the meta-DAG (Directed Acyclic Graph) provides global consensus. Pillars — the network's validator nodes — create momentum blocks that reference and confirm transactions from the block-lattice layer. This creates a hierarchical structure where:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>Account chains handle user transactions asynchronously</li>
+        <li>Momentum blocks provide checkpoints and ordering</li>
+        <li>The DAG structure allows for efficient consensus without bottlenecks</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Plasma: The Feeless Engine</h2>
+      <p>
+        Plasma is Zenon's solution to transaction fees. Instead of paying per transaction, users generate Plasma by:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li><strong class="text-white">Fusing QSR:</strong> Lock your QSR tokens to generate Plasma over time. The more QSR fused, the more Plasma you generate.</li>
+        <li><strong class="text-white">Proof-of-Work:</strong> For users without QSR, a small computational puzzle can generate enough Plasma for basic transactions.</li>
+      </ul>
+      <p class="mt-4">
+        This dual approach ensures the network remains accessible to everyone while rewarding long-term participants who stake their QSR.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Network of Momentum Consensus</h2>
+      <p>
+        The consensus mechanism combines elements of delegated proof-of-stake with the unique dual-ledger structure. Pillars must stake 15,000 ZNN to participate in consensus, and they are selected to produce momentum blocks based on their weight and voting history. This creates a system that is:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li><strong class="text-white">Energy efficient:</strong> No mining required</li>
+        <li><strong class="text-white">Decentralized:</strong> Anyone can run a Pillar with sufficient stake</li>
+        <li><strong class="text-white">Secure:</strong> Economic incentives align validators with network health</li>
+        <li><strong class="text-white">Fast:</strong> Momentum blocks are produced every ~10 seconds</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Why This Design?</h2>
+      <p>
+        Most blockchains force a tradeoff: fast and cheap, or secure and decentralized. Zenon's dual-ledger architecture attempts to break this trilemma by separating concerns. The block-lattice handles throughput, the meta-DAG handles security, and Plasma handles accessibility. Each component is optimized for its specific role rather than trying to do everything in one layer.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

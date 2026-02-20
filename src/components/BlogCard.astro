@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  slug: string;
+}
+
+const { title, excerpt, date, category, slug } = Astro.props;
+---
+
+<a
+  href={`/blog/${slug}`}
+  class="group block bg-card border border-evergreen rounded-xl p-6 hover:border-mint transition-all duration-300"
+>
+  <span class="inline-block px-3 py-1 text-xs font-medium bg-jade/20 text-mint rounded-full mb-4">
+    {category}
+  </span>
+  <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-mint transition-colors">
+    {title}
+  </h3>
+  <p class="text-pistachio/70 mb-4 line-clamp-3">
+    {excerpt}
+  </p>
+  <div class="flex items-center justify-between">
+    <time class="text-pistachio/50 text-sm">{date}</time>
+    <span class="text-mint group-hover:translate-x-1 transition-transform">
+      &rarr;
+    </span>
+  </div>
+</a>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KeyTakeaways from '../../components/KeyTakeaways.astro';
+
+const takeaways = [
+  'Zenon uses SPV (Simple Payment Verification) for trustless Bitcoin interoperability',
+  'No wrapped BTC — real Bitcoin, no custodial risk',
+  'Zenon provides infrastructure that Bitcoin cannot offer natively',
+  'The goal is to extend Bitcoin capabilities, not replace it',
+];
+---
+
+<BaseLayout title="Bitcoin + Zenon">
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">Bitcoin + Zenon: Not Competing, Building</h1>
+
+    <KeyTakeaways items={takeaways} />
+
+    <div class="prose prose-lg max-w-none text-pistachio">
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">The Bitcoin Alignment</h2>
+      <p>
+        Zenon does not position itself as a "Bitcoin killer" or an alternative to Bitcoin. Instead, it recognizes Bitcoin as the foundational layer of digital sound money and seeks to build infrastructure that complements it. The philosophy is simple: Bitcoin is the best money, but it needs additional layers to fulfill its potential as global infrastructure.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Trustless Interoperability via SPV</h2>
+      <p>
+        Most "Bitcoin bridges" work by locking your BTC with a custodian who then mints a synthetic version on another chain. This introduces counterparty risk — you are trusting someone else with your Bitcoin.
+      </p>
+      <p class="mt-4">
+        Zenon takes a different approach using SPV (Simple Payment Verification). SPV allows Zenon nodes to verify Bitcoin transactions directly by checking block headers and merkle proofs, without needing to trust any third party. This means:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>No wrapped tokens — your BTC remains real BTC</li>
+        <li>No custodians — no one can steal or freeze your funds</li>
+        <li>No permission required — fully permissionless interoperability</li>
+        <li>Cryptographic verification — math, not trust</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">What Zenon Offers Bitcoin</h2>
+      <p>
+        Bitcoin is intentionally limited in its base layer functionality. This is a feature, not a bug — keeping Bitcoin simple makes it secure and robust. But this means Bitcoin cannot natively support:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>Fast, feeless transactions for everyday use</li>
+        <li>Complex smart contracts and dApps</li>
+        <li>High-throughput applications</li>
+        <li>Privacy-preserving transactions</li>
+      </ul>
+      <p class="mt-4">
+        Zenon provides these capabilities while maintaining a trust-minimized connection to the Bitcoin network. Think of it as Bitcoin's execution layer — where the complex stuff happens while Bitcoin remains the settlement layer and store of value.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">The Vision</h2>
+      <p>
+        The end goal is a world where Bitcoin serves as the global reserve asset and settlement layer, while networks like Zenon handle the day-to-day transactions and applications. Users can hold their wealth in Bitcoin, use Zenon for fast and free transactions, and move between the two seamlessly and trustlessly.
+      </p>
+      <p class="mt-4">
+        This is not about creating another token to compete with BTC. It is about building the infrastructure that makes Bitcoin more useful without compromising its core properties.
+      </p>
+
+      <h2 class="text-2xl font-bold text-white mt-12 mb-4">Why New Tokens Then?</h2>
+      <p>
+        A common question from Bitcoiners: if Zenon is pro-Bitcoin, why does it have its own tokens?
+      </p>
+      <p class="mt-4">
+        ZNN and QSR exist to secure and operate the Zenon network itself. You cannot run a proof-of-stake network on Bitcoin — you need native tokens for staking, governance, and economic incentives. The tokens are not meant to be an alternative store of value to Bitcoin; they are functional components that make the network work.
+      </p>
+      <p class="mt-4">
+        Read more about this in our blog post: <a href="/blog/btc-thesis-why-new-tokens" class="text-mint hover:text-jade">Why New Tokens? What Zenon Has to Do With Bitcoin</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

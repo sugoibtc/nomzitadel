@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+
+const learnCards = [
+  {
+    icon: '🌱',
+    title: 'Beginners Guide',
+    description: 'New to Zenon? Start here. Learn what the Network of Momentum is and why it matters in plain language.',
+    href: '/learn/beginners',
+  },
+  {
+    icon: '🏗',
+    title: 'Architecture Deep Dive',
+    description: 'Explore the dual-ledger design combining block-lattice with meta-DAG for unprecedented scalability.',
+    href: '/learn/architecture',
+  },
+  {
+    icon: '₿',
+    title: 'Bitcoin + Zenon',
+    description: 'Understand how Zenon builds alongside Bitcoin with trustless SPV interoperability — not competing, building.',
+    href: '/learn/bitcoin',
+  },
+  {
+    icon: '💎',
+    title: 'Tokenomics',
+    description: 'Deep dive into the dual-token model: ZNN for governance and QSR for feeless transactions through Plasma.',
+    href: '/learn/tokenomics',
+  },
+];
+---
+
+<BaseLayout title="Learn">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Learn Zenon</h1>
+      <p class="text-xl text-pistachio/80">
+        Whether you are a complete beginner or a seasoned developer, these resources will help you understand the Network of Momentum from the ground up.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {learnCards.map((card) => (
+        <FeatureCard {...card} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

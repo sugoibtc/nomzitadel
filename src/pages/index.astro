@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const features = [
+  {
+    icon: '📚',
+    title: 'Learn NoM',
+    description: 'Understand the Network of Momentum from the ground up — architecture, consensus, and design philosophy.',
+    href: '/learn',
+  },
+  {
+    icon: '₿',
+    title: 'Bitcoin + Zenon',
+    description: 'Discover how Zenon builds alongside Bitcoin with trustless SPV interoperability — no wrapped tokens, no custodians.',
+    href: '/learn/bitcoin',
+  },
+  {
+    icon: '🌐',
+    title: 'Community',
+    description: 'Connect with builders, researchers, and enthusiasts across forums, Telegram, and X.',
+    href: '/community',
+  },
+  {
+    icon: '🛠',
+    title: 'Build on Zenon',
+    description: 'Access SDKs, documentation, and funding through Accelerator-Z to build the future of decentralized infrastructure.',
+    href: '/build',
+  },
+];
+
+const stats = [
+  { label: 'Feeless Transactions', description: 'Powered by Plasma from QSR fusion' },
+  { label: 'Dual-Ledger Architecture', description: 'Block-lattice meets meta-DAG' },
+  { label: 'Bitcoin-Native', description: 'Trustless SPV interoperability' },
+];
+
+const latestPosts = [
+  {
+    title: 'Why New Tokens? What Zenon Has to Do With Bitcoin',
+    excerpt: 'The most common question from Bitcoiners. Here is why ZNN and QSR exist and how they serve Bitcoin — not compete with it.',
+    date: '2026-02-20',
+    category: 'BTC + Zenon',
+    slug: 'btc-thesis-why-new-tokens',
+  },
+  {
+    title: 'Dual-Ledger Architecture: What Makes Zenon Different',
+    excerpt: 'Block-lattice meets meta-DAG. Here is what that actually means and why it matters.',
+    date: '2026-02-21',
+    category: 'Architecture & Tech',
+    slug: 'zenon-dual-ledger',
+  },
+  {
+    title: 'The Bear Market Is Where Real Ones Build',
+    excerpt: 'Everyone left. The builders stayed. Here is what is happening in Zenon while the market looks away.',
+    date: '2026-02-22',
+    category: 'Bear Market',
+    slug: 'bear-market-builders',
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-jade/10 to-transparent pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          ₿e part of the evolution
+        </h1>
+        <p class="text-xl md:text-2xl text-pistachio/80 mb-10 max-w-2xl mx-auto">
+          The definitive resource hub for Zenon Network — Bitcoin-native, feeless, decentralized.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/learn"
+            class="inline-flex items-center justify-center px-8 py-4 bg-mint text-bg font-semibold rounded-xl hover:bg-jade transition-colors"
+          >
+            Start Learning
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="/community"
+            class="inline-flex items-center justify-center px-8 py-4 border-2 border-mint text-mint font-semibold rounded-xl hover:bg-mint hover:text-bg transition-colors"
+          >
+            Explore Community
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Cards -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((feature) => (
+        <FeatureCard {...feature} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Stats Row -->
+  <section class="border-y border-evergreen bg-card/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        {stats.map((stat) => (
+          <div>
+            <h3 class="text-2xl font-bold text-mint mb-2">{stat.label}</h3>
+            <p class="text-pistachio/70">{stat.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Posts -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex items-center justify-between mb-10">
+      <h2 class="text-3xl font-bold text-white">Latest from Zitadel Logz</h2>
+      <a href="/blog" class="text-mint hover:text-jade transition-colors font-medium">
+        View all &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {latestPosts.map((post) => (
+        <BlogCard {...post} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
