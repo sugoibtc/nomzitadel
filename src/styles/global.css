@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-/* Satoshi loaded via Fontshare in BaseLayout.astro */
+/* Manrope loaded via Google Fonts in BaseLayout.astro */
 
-/* Zenon Hub–style: Satoshi Medium + dark theme + green accents */
+/* Zenon Hub–style: Manrope Medium + dark theme + green accents */
 @theme {
   /* Zenon Hub / Zenon brand primary palette */
   --color-zen-green: #19E321;
@@ -26,7 +26,12 @@
   --zen-pink-glow: rgba(255, 0, 153, 0.3);
   --zen-btc-glow: rgba(255, 153, 0, 0.3);
   /* Font */
-  --font-sans: 'Satoshi', sans-serif;
+  --font-sans: 'Manrope', sans-serif;
+}
+
+/* Utility: force Manrope where needed */
+.font-manrope {
+  font-family: 'Manrope', sans-serif !important;
 }
 
 /* Dark gradient (black → deep green) + animated momentum lines & particles */
@@ -204,11 +209,21 @@
   100% { transform: translateX(48px); }
 }
 
+/* Animated dots line (used under hero CTA) */
+@keyframes dots-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 12px 0;
+  }
+}
+
 @layer base {
   html {
     --x-primary: #00D557;
     --x-secondary: #0061EB;
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-weight: 500;
     background-color: #080a09;
     color: #B0B0B0;

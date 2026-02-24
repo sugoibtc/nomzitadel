@@ -13,7 +13,108 @@ const { icon, title, description, href } = Astro.props;
   href={href}
   class="group block bg-card border border-evergreen rounded-xl p-6 hover:border-mint transition-all duration-300"
 >
-  <div class="text-4xl mb-4">{icon}</div>
+  <div class="mb-4 inline-flex">
+    {
+      icon === 'learn' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mint/15 to-white/0 border border-mint/25 shadow-[0_0_20px_rgba(25,227,33,0.35)]"
+        >
+          <div class="space-y-1 w-5">
+            <div class="h-1.5 rounded-full bg-mint"></div>
+            <div class="h-1.5 rounded-full bg-mint/80"></div>
+            <div class="h-1.5 rounded-full bg-mint/60"></div>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      icon === 'bitcoin' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF9900]/20 to-black/0 border border-[#FF9900]/40 shadow-[0_0_24px_rgba(255,153,0,0.45)]"
+        >
+          <div
+            class="flex h-7 w-7 items-center justify-center rounded-full border border-[#FF9900]/60 bg-gradient-to-br from-[#FF9900]/70 to-[#FF9900]/40"
+          >
+            <span class="text-xs font-semibold text-black">₿</span>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      icon === 'community' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mint/10 to-white/0 border border-mint/20 shadow-[0_0_20px_rgba(25,227,33,0.25)]"
+        >
+          <div class="grid grid-cols-3 gap-0.5">
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/90"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/50"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/70"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/60"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/90"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/50"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/70"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/60"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-mint/80"></span>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      icon === 'build' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mint/10 to-white/0 border border-mint/20 shadow-[0_0_20px_rgba(25,227,33,0.3)]"
+        >
+          <div class="relative h-6 w-6">
+            <div
+              class="absolute inset-0 rounded-md border border-mint/50"
+              style="box-shadow: 0 0 0 1px rgba(25,227,33,0.12);"
+            ></div>
+            <div class="grid grid-cols-2 gap-0.5 mt-0.5 ml-0.5">
+              <span class="h-1.5 rounded-sm bg-mint/80"></span>
+              <span class="h-1.5 rounded-sm bg-mint/40"></span>
+              <span class="h-1.5 rounded-sm bg-mint/60"></span>
+              <span class="h-1.5 rounded-sm bg-mint/30"></span>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      icon === 'architecture' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mint/12 to-white/0 border border-mint/20 shadow-[0_0_20px_rgba(25,227,33,0.25)]"
+        >
+          <div class="h-6 w-6 border border-mint/50 rounded-md flex items-center justify-center">
+            <div class="h-3 w-3 border-t border-l border-mint/70 rounded-tl-sm"></div>
+          </div>
+        </div>
+      )
+    }
+
+    {
+      icon === 'tokenomics' && (
+        <div
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-mint/12 to-white/0 border border-mint/20 shadow-[0_0_20px_rgba(25,227,33,0.25)] space-x-1"
+        >
+          <span class="h-4 w-4 rounded-full border border-mint/70"></span>
+          <span class="h-4 w-4 rounded-full border border-mint/40 translate-y-0.5"></span>
+        </div>
+      )
+    }
+
+    {
+      icon !== 'learn' &&
+        icon !== 'bitcoin' &&
+        icon !== 'community' &&
+        icon !== 'build' &&
+        icon !== 'architecture' &&
+        icon !== 'tokenomics' && <div class="text-4xl">{icon}</div>
+    }
+  </div>
   <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-mint transition-colors">
     {title}
   </h3>
