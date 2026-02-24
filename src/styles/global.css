@@ -1,31 +1,238 @@
 @import "tailwindcss";
 
+/* Satoshi loaded via Fontshare in BaseLayout.astro */
+
+/* Zenon Hub–style: Satoshi Medium + dark theme + green accents */
 @theme {
-  --color-mint: #73E2A7;
-  --color-jade: #1C7C54;
-  --color-evergreen: #1B512D;
-  --color-pistachio: #DEF4C6;
-  --color-bg: #0A0A0A;
-  --color-card: #111111;
+  /* Zenon Hub / Zenon brand primary palette */
+  --color-zen-green: #19E321;
+  --color-zen-blue: #0099FF;
+  --color-zen-pink: #FF0099;
+  --color-zen-btc: #FF9900;
+  /* Theme tokens */
+  --color-mint: #19E321;        /* Primary green — links, status, accents */
+  --color-jade: #12a818;        /* Darker green for hover */
+  --color-evergreen: #1a3d1c;   /* Dark green border */
+  --color-pistachio: #B0B0B0;   /* Body text */
+  --color-bg: #0d0d0d;          /* Zenon Hub–style near-black background */
+  --color-card: #141414;        /* Card/surface (slightly lighter than bg) */
+  --color-border: #1e1e1e;     /* Subtle borders */
+  /* Extended palette */
+  --color-x-primary: #00D557;
+  --color-x-secondary: #0061EB;
+  /* Glow utilities (Zenon Hub accent style) */
+  --zen-green-glow: rgba(25, 227, 33, 0.35);
+  --zen-blue-glow: rgba(0, 153, 255, 0.3);
+  --zen-pink-glow: rgba(255, 0, 153, 0.3);
+  --zen-btc-glow: rgba(255, 153, 0, 0.3);
+  /* Font */
+  --font-sans: 'Satoshi', sans-serif;
+}
+
+/* Dark gradient (black → deep green) + animated momentum lines & particles */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Green-grey gradient: darkest at top/bottom, slightly lighter in center (like reference) */
+.site-bg__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #080a09 0%, #0a0d0b 25%, #0e1311 50%, #0a0e0c 75%, #070a08 100%);
+}
+
+/* Curved luminous momentum lines — green-grey */
+.site-bg__curves {
+  position: absolute;
+  inset: 0;
+  color: rgba(140, 165, 155, 0.35);
+  pointer-events: none;
+}
+
+.site-bg__curves-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: curves-shift 20s ease-in-out infinite;
+}
+
+.site-bg__curve {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes curves-shift {
+  0%, 100% { opacity: 0.9; transform: translate(0, 0); }
+  50% { opacity: 1; transform: translate(1%, 0.5%); }
+}
+
+.site-bg__motion {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+/* Momentum lines: thin diagonal lines — green-grey, drifting slowly */
+.site-bg__lines {
+  position: absolute;
+  inset: -50%;
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      transparent 0,
+      transparent 1px,
+      rgba(120, 145, 135, 0.06) 1px,
+      rgba(120, 145, 135, 0.06) 2px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      transparent 0,
+      transparent 1px,
+      rgba(100, 130, 118, 0.04) 1px,
+      rgba(100, 130, 118, 0.04) 2px
+    );
+  background-size: 120px 100%, 160px 100%;
+  animation: momentum-drift 45s linear infinite;
+}
+
+.site-bg__lines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    95deg,
+    transparent 0,
+    transparent 2px,
+    rgba(130, 155, 145, 0.04) 2px,
+    rgba(130, 155, 145, 0.04) 3px
+  );
+  background-size: 200px 100%;
+  animation: momentum-drift-slow 60s linear infinite reverse;
+}
+
+@keyframes momentum-drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(120px, 0); }
+}
+
+@keyframes momentum-drift-slow {
+  from { transform: translate(0, 0); }
+  to { transform: translate(200px, 0); }
+}
+
+/* Northern-star field: green-grey points, subtle */
+.site-bg__particles {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle 1.5px at 50% 45%, rgba(140, 165, 155, 0.4) 0%, rgba(140, 165, 155, 0.1) 40%, transparent 70%),
+    radial-gradient(circle 1.2px at 22% 25%, rgba(130, 155, 145, 0.35) 0%, transparent 60%),
+    radial-gradient(circle 1.2px at 78% 72%, rgba(120, 148, 138, 0.3) 0%, transparent 60%),
+    radial-gradient(circle 1px at 15% 40%, rgba(125, 150, 140, 0.28) 0%, transparent 60%),
+    radial-gradient(circle 1px at 85% 15%, rgba(135, 160, 150, 0.25) 0%, transparent 60%),
+    radial-gradient(circle 1px at 60% 85%, rgba(118, 145, 135, 0.22) 0%, transparent 60%),
+    radial-gradient(circle 0.8px at 35% 60%, rgba(128, 152, 142, 0.2) 0%, transparent 60%),
+    radial-gradient(circle 0.8px at 90% 55%, rgba(122, 148, 138, 0.18) 0%, transparent 60%),
+    radial-gradient(circle 0.8px at 8% 18%, rgba(132, 158, 148, 0.16) 0%, transparent 60%),
+    radial-gradient(circle 0.8px at 95% 88%, rgba(125, 150, 140, 0.14) 0%, transparent 60%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: particles-pulse 8s ease-in-out infinite;
+}
+
+@keyframes particles-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+/* Flowing momentum particles: star-like green dots, northern-sky feel */
+.site-bg__flow {
+  position: absolute;
+  inset: -20%;
+  overflow: hidden;
+  opacity: 1;
+}
+
+/* Stream 1: diagonal flow — green-grey */
+.site-bg__flow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(130, 158, 148, 0.25) 0.5px, rgba(120, 145, 135, 0.1) 1px, transparent 2px);
+  background-size: 32px 32px;
+  animation: flow-diag 25s linear infinite;
+}
+
+/* Stream 2: opposite diagonal — green-grey */
+.site-bg__flow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(118, 142, 132, 0.2) 0.5px, rgba(110, 135, 125, 0.08) 1px, transparent 2px);
+  background-size: 40px 40px;
+  background-position: 0 0;
+  animation: flow-diag-rev 35s linear infinite;
+}
+
+@keyframes flow-diag {
+  0% { transform: translate(0, 0) rotate(-15deg); }
+  100% { transform: translate(64px, 64px) rotate(-15deg); }
+}
+
+@keyframes flow-diag-rev {
+  0% { transform: translate(0, 0) rotate(12deg); }
+  100% { transform: translate(-80px, -80px) rotate(12deg); }
+}
+
+/* Extra flowing layer: horizontal drift for depth */
+.site-bg__flow .flow-stream {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(125, 152, 142, 0.2) 0.5px, rgba(115, 140, 130, 0.08) 1px, transparent 2px);
+  background-size: 48px 24px;
+  animation: flow-h 30s linear infinite;
+}
+
+@keyframes flow-h {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(48px); }
 }
 
 @layer base {
   html {
-    font-family: 'Inter', sans-serif;
-    background-color: #0A0A0A;
-    color: #DEF4C6;
+    --x-primary: #00D557;
+    --x-secondary: #0061EB;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    background-color: #080a09;
+    color: #B0B0B0;
+    letter-spacing: 0.04em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF;
+    letter-spacing: 0.06em;
   }
 
   a {
-    color: #73E2A7;
+    color: #19E321;
     transition: color 0.2s ease;
   }
 
   a:hover {
-    color: #1C7C54;
+    color: #12a818;
   }
+}
+
+/* Zenon protocol mark: flat green circle with soft glow */
+.zenon-dot {
+  background: #19E321;
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(25, 227, 33, 0.35), 0 0 48px rgba(25, 227, 33, 0.35);
 }
