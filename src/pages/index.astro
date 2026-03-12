@@ -63,38 +63,41 @@ const latestPosts = [
 
 <BaseLayout title="Home">
   <!-- Hero Section -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-jade/10 to-transparent pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+  <section class="relative overflow-hidden cyber-grid pt-24 pb-32">
+    <div class="absolute inset-0 bg-gradient-to-b from-neon-green/10 to-transparent pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center max-w-4xl mx-auto">
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          ₿e part of the evolution
+        <div class="inline-block px-4 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-neon-green text-sm font-medium mb-6 backdrop-blur-sm animate-pulse">
+          Network of Momentum • 7 Years of Evolution
+        </div>
+        <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
+          Enter the <span class="text-neon-green text-glow">Zitadel</span>
         </h1>
-        <p class="text-xl md:text-2xl text-pistachio/80 mb-10 max-w-2xl mx-auto">
-          The definitive resource hub for Zenon Network — Bitcoin-native, feeless, decentralized.
+        <p class="text-xl md:text-2xl text-text-dim mb-10 max-w-3xl mx-auto leading-relaxed">
+          Your gateway to the Network of Momentum. The definitive resource hub for everything Zenon, in one place.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
           <a
-            href="/learn"
-            class="group relative inline-flex items-center justify-center px-8 py-4 bg-mint text-bg font-semibold rounded-xl hover:bg-jade transition-colors"
+            href="/build"
+            class="group relative inline-flex items-center justify-center px-8 py-4 bg-neon-green text-bg font-bold rounded-sm hover:-translate-y-1 transition-all"
           >
             <span class="relative z-10 inline-flex items-center">
-              Start Learning
+              Start Building
               <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </span>
             <!-- Subtle animated dots line under CTA text -->
             <div
               class="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-1 h-[2px] w-24 opacity-40 mix-blend-overlay group-hover:opacity-70 group-hover:scale-110 transition-transform transition-opacity duration-300"
-              style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"
+              style="background-image: radial-gradient(rgba(0,0,0,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"
             ></div>
           </a>
           <a
-            href="/community"
-            class="inline-flex items-center justify-center px-8 py-4 border-2 border-mint text-mint font-semibold rounded-xl hover:bg-mint hover:text-bg transition-colors"
+            href="/research"
+            class="inline-flex items-center justify-center px-10 py-4 border border-neon-green/50 text-neon-green font-bold rounded-sm hover:bg-neon-green/10 transition-all backdrop-blur-sm"
           >
-            Explore Community
+            Browse Research
           </a>
         </div>
       </div>
@@ -102,7 +105,7 @@ const latestPosts = [
   </section>
 
   <!-- Feature Cards -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {features.map((feature) => (
         <FeatureCard {...feature} />
@@ -110,14 +113,14 @@ const latestPosts = [
     </div>
   </section>
 
-  <!-- Stats Row -->
-  <section class="border-y border-evergreen bg-card/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+  <!-- Stats Row / USPs -->
+  <section class="border-y border-neon-green/10 bg-card/50 backdrop-blur-sm backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
         {stats.map((stat) => (
-          <div>
-            <h3 class="text-2xl font-bold text-mint mb-2">{stat.label}</h3>
-            <p class="text-pistachio/70">{stat.description}</p>
+          <div class="group">
+            <h3 class="text-2xl font-bold text-neon-green mb-3 group-hover:text-glow transition-all">{stat.label}</h3>
+            <p class="text-text-dim leading-relaxed">{stat.description}</p>
           </div>
         ))}
       </div>
@@ -125,14 +128,14 @@ const latestPosts = [
   </section>
 
   <!-- Latest Posts -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="flex items-center justify-between mb-10">
-      <h2 class="text-3xl font-bold text-white">Latest from NoM Zitadel</h2>
-      <a href="/blog" class="text-mint hover:text-jade transition-colors font-medium">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <div class="flex items-center justify-between mb-12">
+      <h2 class="text-3xl font-bold text-white tracking-tight">Latest from <span class="text-neon-green">NoM Zitadel</span></h2>
+      <a href="/blog" class="text-neon-green hover:text-white transition-colors font-medium border-b border-neon-green/30 pb-1">
         View all &rarr;
       </a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {latestPosts.map((post) => (
         <BlogCard {...post} />
       ))}

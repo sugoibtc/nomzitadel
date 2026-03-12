@@ -32,23 +32,23 @@ const navColumns = [
 ];
 ---
 
-<footer class="bg-card border-t border-evergreen mt-auto">
+<footer class="bg-card border-t border-neon-green/10 mt-auto">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
       <div class="lg:col-span-2">
         <a href="/" class="flex items-center gap-3 mb-4">
-          <Image src={logo} alt="NoM Zitadel" class="w-12 h-12 rounded-full" />
+          <Image src={logo} alt="NoM Zitadel" class="w-12 h-12 rounded-full border border-neon-green/20" />
           <span class="font-bold text-white text-xl">NoM Zitadel</span>
         </a>
-        <p class="text-pistachio/70 mb-6 max-w-sm">
-          The definitive resource hub for Zenon Network — Bitcoin-native, feeless, decentralized.
+        <p class="text-text-dim mb-6 max-w-sm">
+          The definitive resource hub for everything Zenon, in one place — Bitcoin-native, feeless, decentralized.
         </p>
         <div class="flex items-center gap-4">
           <a
             href="https://x.com/NoMzitadel"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-pistachio hover:text-mint transition-colors"
+            class="text-text-dim hover:text-neon-green transition-colors"
             aria-label="Follow on X"
           >
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ const navColumns = [
             href="https://t.me/Zitadel"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-pistachio hover:text-mint transition-colors"
+            class="text-text-dim hover:text-neon-green transition-colors"
             aria-label="Join Telegram"
           >
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ const navColumns = [
               <li>
                 <a
                   href={link.href}
-                  class="text-pistachio/70 hover:text-mint transition-colors"
+                  class="text-text-dim/70 hover:text-neon-green transition-colors"
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                   rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
@@ -90,7 +90,7 @@ const navColumns = [
       ))}
     </div>
 
-    <div class="border-t border-evergreen mt-12 pt-8 text-center text-pistachio/50 text-sm">
+    <div class="border-t border-neon-green/10 mt-12 pt-8 text-center text-text-dim/50 text-sm">
       <p>&copy; {new Date().getFullYear()} NoM Zitadel. All rights reserved.</p>
     </div>
   </div>

@@ -2,31 +2,16 @@
 
 /* Manrope loaded via Google Fonts in BaseLayout.astro */
 
-/* Zenon Hub–style: Manrope Medium + dark theme + green accents */
 @theme {
-  /* Zenon Hub / Zenon brand primary palette */
-  --color-zen-green: #19E321;
-  --color-zen-blue: #0099FF;
-  --color-zen-pink: #FF0099;
-  --color-zen-btc: #FF9900;
-  /* Theme tokens */
-  --color-mint: #19E321;        /* Primary green — links, status, accents */
-  --color-jade: #12a818;        /* Darker green for hover */
-  --color-evergreen: #1a3d1c;   /* Dark green border */
-  --color-pistachio: #B0B0B0;   /* Body text */
-  --color-bg: #0d0d0d;          /* Zenon Hub–style near-black background */
-  --color-card: #141414;        /* Card/surface (slightly lighter than bg) */
-  --color-border: #1e1e1e;     /* Subtle borders */
-  /* Extended palette */
-  --color-x-primary: #00D557;
-  --color-x-secondary: #0061EB;
-  /* Glow utilities (Zenon Hub accent style) */
-  --zen-green-glow: rgba(25, 227, 33, 0.35);
-  --zen-blue-glow: rgba(0, 153, 255, 0.3);
-  --zen-pink-glow: rgba(255, 0, 153, 0.3);
-  --zen-btc-glow: rgba(255, 153, 0, 0.3);
-  /* Font */
-  --font-sans: 'Manrope', sans-serif;
+  /* Theme tokens - Cyberpunk */
+  --color-neon-green: #6cef4b;
+  --color-mint: #73E2A7;
+  --color-jade: #1C7C54;
+  --color-evergreen: #1B512D;
+  --color-pistachio: #DEF4C6;
+  --color-bg: #000000;
+  --color-card: #0a0a0a;
+  --color-text-dim: #ffffffb3;
 }
 
 /* Utility: force Manrope where needed */
@@ -221,27 +206,56 @@
 
 @layer base {
   html {
-    --x-primary: #00D557;
-    --x-secondary: #0061EB;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 500;
-    background-color: #080a09;
-    color: #B0B0B0;
-    letter-spacing: 0.04em;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffffb3;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: #FFFFFF;
-    letter-spacing: 0.06em;
+    color: #fff;
+    letter-spacing: -0.02em;
   }
 
+  h1 { font-size: 3.815rem; }
+  h2 { font-size: 3.052rem; }
+  h3 { font-size: 2.441rem; }
+  h4 { font-size: 1.953rem; }
+  h5 { font-size: 1.563rem; }
+  h6 { font-size: 1.25rem; }
+
   a {
-    color: #19E321;
-    transition: color 0.2s ease;
+    color: #6cef4b;
+    transition: all 0.2s ease;
   }
 
   a:hover {
-    color: #12a818;
+    color: #3EB489;
+    text-shadow: 0 0 8px rgba(108, 239, 75, 0.5);
+  }
+}
+
+@layer utilities {
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(108, 239, 75, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108, 239, 75, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .neon-border {
+    border: 1px solid #6cef4b33;
+    box-shadow: 0 0 15px rgba(108, 239, 75, 0.1);
+  }
+
+  .neon-border:hover {
+    border-color: #6cef4b;
+    box-shadow: 0 0 20px rgba(108, 239, 75, 0.2);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(108, 239, 75, 0.3);
   }
 }
 
