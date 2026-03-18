@@ -14,6 +14,24 @@ const navColumns = [
     ],
   },
   {
+    title: 'Ecosystem',
+    links: [
+      { href: 'https://zenon.network', label: 'Zenon.Network' },
+      { href: 'https://syrius.zenon.network', label: 'Syrius Wallet' },
+      { href: 'https://accelerator-z.com', label: 'Accelerator-Z' },
+      { href: 'https://bridge.zenon.network', label: 'Network Bridge' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { href: '/learn', label: 'Documentation' },
+      { href: '/research', label: 'Research Hub' },
+      { href: '/build', label: 'Developer Tooling' },
+      { href: '#', label: 'Project Directory' },
+    ],
+  },
+  {
     title: 'Community',
     links: [
       { href: '/community', label: 'Overview' },
@@ -33,15 +51,15 @@ const navColumns = [
 ---
 
 <footer class="bg-card border-t border-neon-green/10 mt-auto">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+  <div class="px-6 sm:px-8 lg:px-12 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-8">
       <div class="lg:col-span-2">
         <a href="/" class="flex items-center gap-3 mb-4">
           <Image src={logo} alt="NoM Zitadel" class="w-12 h-12 rounded-full border border-neon-green/20" />
-          <span class="font-bold text-white text-xl">NoM Zitadel</span>
+          <span class="font-bold text-text-bright text-xl">NoM Zitadel</span>
         </a>
         <p class="text-text-dim mb-6 max-w-sm">
-          The definitive resource hub for everything Zenon, in one place — Bitcoin-native, feeless, decentralized.
+          The definitive resource hub for everything Zenon. Connect, learn, build, and create the future of the Network of Momentum.
         </p>
         <div class="flex items-center gap-4">
           <a
@@ -71,7 +89,7 @@ const navColumns = [
 
       {navColumns.map((column) => (
         <div>
-          <h3 class="font-semibold text-white mb-4">{column.title}</h3>
+          <h3 class="font-semibold text-text-bright mb-4">{column.title}</h3>
           <ul class="space-y-2">
             {column.links.map((link) => (
               <li>

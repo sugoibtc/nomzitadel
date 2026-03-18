@@ -1,0 +1,110 @@
+[
+  {
+    "name": "HQZ Upgrade System",
+    "link": "https://github.com/hypercore-one/sig-sdlc",
+    "contributors": ["HC1 - SDLC SIG"],
+    "status": "Active",
+    "updated": "Sep 24, 2025",
+    "remarks": "Preparing test deployment with Nostr-based node upgrade system",
+    "category": "Core"
+  },
+  {
+    "name": "PTLCs",
+    "link": "https://github.com/zenon-network/go-zenon/pull/13",
+    "contributors": ["@georgezgeorgez"],
+    "status": "On Hold",
+    "updated": "–",
+    "remarks": "Implementation ready, awaiting integration on HQZ",
+    "category": "Protocol"
+  },
+  {
+    "name": "Supernova Docs",
+    "link": "#",
+    "contributors": ["@coinselor"],
+    "status": "On Hold",
+    "updated": "–",
+    "remarks": "Initial draft complete, awaiting visuals + tokenomics",
+    "category": "Research"
+  },
+  {
+    "name": "Research - Merge-Mining / BitVM / Silent Payments",
+    "link": "#",
+    "contributors": ["@aliencoder"],
+    "status": "Active",
+    "updated": "Sep 24, 2025",
+    "remarks": "Exploring feasibility of privacy-focused and BTC-aligned integrations",
+    "category": "Research"
+  },
+  {
+    "name": "Merge-Mining Work (PoC)",
+    "link": "#",
+    "contributors": ["@MoonBaze"],
+    "status": "Unknown",
+    "updated": "-",
+    "remarks": "Status unclear, forum discussion ongoing",
+    "category": "Research"
+  },
+  {
+    "name": "Syrius Mobile App",
+    "link": "#",
+    "contributors": ["@tortcher"],
+    "status": "On Hold",
+    "updated": "Aug 1, 2025",
+    "remarks": "Development paused, no recent commits",
+    "category": "Tooling"
+  },
+  {
+    "name": "Supernova Chain Dev",
+    "link": "#",
+    "contributors": ["@aliencoder"],
+    "status": "On Hold",
+    "updated": "–",
+    "remarks": "No recent progress, waiting on documentation and scope",
+    "category": "Core"
+  },
+  {
+    "name": "Syrius Wallet Refactoring",
+    "link": "https://github.com/maznnwell/syrius",
+    "contributors": ["Maxwell"],
+    "status": "Active",
+    "updated": "Sep 9, 2025",
+    "remarks": "Unifying desktop/mobile codebase, prep for extension features",
+    "category": "Tooling"
+  },
+  {
+    "name": "Supernova Bagswap DEX",
+    "link": "#",
+    "contributors": ["ZenonORG (@mehowz + @sumoshi21)"],
+    "status": "Active",
+    "updated": "Sep 19, 2025",
+    "remarks": "Waiting for contract deployment and final integration",
+    "category": "Ecosystem"
+  },
+  {
+    "name": "Wave Web Wallet + Dashboard",
+    "link": "https://wvv.app",
+    "contributors": ["Pumpum"],
+    "status": "Active",
+    "updated": "Sep 19, 2025",
+    "remarks": "Responsive interface in development, MVP live at wvv.app",
+    "category": "Tooling"
+  },
+  {
+    "name": "DP Spec + Tooling",
+    "link": "#",
+    "contributors": ["@vilkris (HC1)"],
+    "status": "Active",
+    "updated": "Sep 24, 2025",
+    "remarks": "Focused on Dynamic Plasma spec, go-zenon test support",
+    "category": "Core"
+  },
+  {
+    "name": "Incubator MVP + Node Manager",
+    "link": "#",
+    "contributors": ["HC1"],
+    "status": "Active",
+    "updated": "Sep 24, 2025",
+    "remarks": "Tooling in development to manage tasks, bounties, and signal support via Nostr",
+    "category": "Tooling"
+  }
+]

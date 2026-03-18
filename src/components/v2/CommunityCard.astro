@@ -1,0 +1,30 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  link: string;
+  iconSvg: string;
+  members?: string;
+}
+
+const { name, description, link, iconSvg, members } = Astro.props;
+---
+
+<a href={link} target="_blank" rel="noopener noreferrer" class="flex flex-col h-full p-6 rounded-lg bg-card/40 border border-white/5 hover:border-neon-green/30 hover:bg-card/60 transition-all duration-300 group transform hover:-translate-y-1">
+  <div class="flex items-center justify-between mb-5">
+    <div class="w-12 h-12 rounded-full bg-neon-green/10 flex items-center justify-center text-neon-green group-hover:scale-110 group-hover:bg-neon-green/20 group-hover:shadow-[0_0_15px_rgba(108,239,75,0.2)] transition-all duration-300">
+      <Fragment set:html={iconSvg} />
+    </div>
+    {members && (
+      <div class="text-xs font-medium text-text-dim bg-white/5 px-3 py-1 rounded-full border border-white/10">
+        {members}
+      </div>
+    )}
+  </div>
+  <h3 class="text-xl font-bold text-text-bright mb-2 group-hover:text-neon-green transition-colors">{name}</h3>
+  <p class="text-text-dim text-sm flex-grow leading-relaxed">{description}</p>
+  <div class="mt-5 pt-4 border-t border-white/5 flex justify-between items-center text-sm font-medium text-text-dim group-hover:text-neon-green transition-colors">
+    <span>Join {name}</span>
+    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+  </div>
+</a>

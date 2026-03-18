@@ -1,0 +1,15 @@
+---
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<div class="group p-6 rounded-lg bg-card/60 border border-neon-green/10 backdrop-blur-md hover:border-neon-green/50 hover:shadow-[0_0_20px_rgba(108,239,75,0.15)] transition-all duration-300 transform hover:-translate-y-1">
+  <div class="text-4xl mb-5">{icon}</div>
+  <h3 class="text-xl font-bold text-text-bright mb-3 group-hover:text-neon-green transition-colors">{title}</h3>
+  <p class="text-text-dim text-sm leading-relaxed">{description}</p>
+</div>

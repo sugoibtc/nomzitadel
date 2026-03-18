@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.jpg';
+import BlockHeight from './v2/BlockHeight.jsx';
 
 const navLinks = [
   { href: '/learn', label: 'Learn' },
@@ -11,38 +12,50 @@ const navLinks = [
 ];
 ---
 
-<nav class="sticky top-0 z-40 bg-bg/80 backdrop-blur-md border-b border-neon-green/10/50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-        <Image src={logo} alt="NoM Zitadel" class="w-10 h-10 rounded-full border border-neon-green/20" />
-        <span class="font-bold text-white text-lg hidden sm:block">NoM Zitadel</span>
-      </a>
-
-      <div class="hidden md:flex items-center gap-8">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-text-dim hover:text-neon-green transition-colors font-medium hover:text-glow"
-          >
-            {link.label}
+<nav class="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-neon-green/10">
+  <div class="px-6 sm:px-8 lg:px-12">
+    <div class="flex items-center h-16 w-full">
+      <div class="flex items-center justify-between w-full h-full">
+        <!-- Left: Logo & Links Group -->
+        <div class="flex items-center gap-12">
+          <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Image src={logo} alt="NoM Zitadel" class="w-10 h-10 rounded-full border border-neon-green/20" />
+            <span class="font-bold text-text-bright text-lg whitespace-nowrap">NoM Zitadel</span>
           </a>
-        ))}
-      </div>
 
-      <button
-        id="mobile-menu-button"
-        class="md:hidden p-2 text-text-dim hover:text-neon-green"
-        aria-label="Toggle menu"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+          <div class="hidden md:flex items-center gap-8 border-l border-white/10 pl-10">
+            {navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="text-xs font-bold uppercase tracking-widest text-text-dim hover:text-neon-green transition-colors hover:text-glow"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right: Tracker & Mobile Toggle -->
+        <div class="flex items-center gap-6">
+          <div class="hidden md:block">
+            <BlockHeight client:load />
+          </div>
+          
+          <button
+            id="mobile-menu-button"
+            class="md:hidden p-2 text-text-dim hover:text-neon-green"
+            aria-label="Toggle menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-card border-b border-neon-green/10">
+  <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-neon-green/10">
     <div class="px-4 py-4 space-y-3">
       {navLinks.map((link) => (
         <a
@@ -63,4 +76,6 @@ const navLinks = [
   button?.addEventListener('click', () => {
     menu?.classList.toggle('hidden');
   });
+
+
 </script>

@@ -1,0 +1,63 @@
+---
+export interface Props {
+  name: string;
+  link: string;
+  contributors: string[];
+  status: 'Active' | 'On Hold' | 'Unknown';
+  updated: string;
+  remarks: string;
+  category: string;
+}
+
+const { name, link, contributors, status, updated, remarks, category } = Astro.props;
+
+const statusColors = {
+  'Active': 'bg-[#6cef4b]/10 text-[#6cef4b] border-[#6cef4b]/30 shadow-[0_0_10px_rgba(108,239,75,0.2)]',
+  'On Hold': 'bg-[#f7931a]/10 text-[#f7931a] border-[#f7931a]/30 shadow-[0_0_10px_rgba(247,147,26,0.2)]',
+  'Unknown': 'bg-white/5 text-text-dim border-white/10'
+};
+
+const statusGlow = {
+  'Active': 'group-hover:border-[#6cef4b]/50 group-hover:shadow-[0_0_20px_rgba(108,239,75,0.1)]',
+  'On Hold': 'group-hover:border-[#f7931a]/50 group-hover:shadow-[0_0_20px_rgba(247,147,26,0.1)]',
+  'Unknown': 'group-hover:border-white/30'
+};
+---
+
+<a 
+  href={link !== '#' ? link : undefined} 
+  target={link !== '#' ? "_blank" : undefined}
+  rel={link !== '#' ? "noopener noreferrer" : undefined}
+  class={`group p-6 rounded-xl bg-card/60 border border-white/5 backdrop-blur-md transition-all duration-300 flex flex-col h-full ${statusGlow[status]}`}
+>
+  <div class="flex justify-between items-start mb-4">
+    <div class="flex flex-col gap-1">
+      <span class="text-[10px] uppercase tracking-widest text-text-dim/50 font-bold">{category}</span>
+      <h3 class="text-lg font-bold text-text-bright group-hover:text-text-bright transition-colors">{name}</h3>
+    </div>
+    <span class={`text-[10px] px-2 py-0.5 rounded border font-bold ${statusColors[status]}`}>
+      {status.toUpperCase()}
+    </span>
+  </div>
+
+  <p class="text-sm text-text-dim/80 mb-6 flex-grow line-clamp-3 italic">"{remarks}"</p>
+
+  <div class="mt-auto space-y-4">
+    <div class="flex flex-wrap gap-2">
+      {contributors.map(c => (
+        <span class="text-[10px] px-2 py-0.5 bg-white/5 border border-white/10 rounded-full text-text-dim/70">
+          {c}
+        </span>
+      ))}
+    </div>
+    
+    <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+      <span class="text-[10px] text-text-dim/40 font-mono">UPDATED: {updated}</span>
+      {link !== '#' && (
+        <svg class="w-4 h-4 text-text-dim/30 group-hover:text-text-bright transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      )}
+    </div>
+  </div>
+</a>
