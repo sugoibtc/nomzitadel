@@ -1,144 +1,455 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FeatureCard from '../components/FeatureCard.astro';
+import ValuePropCard from '../components/v2/ValuePropCard.astro';
+import BountyCard from '../components/v2/BountyCard.astro';
 import BlogCard from '../components/BlogCard.astro';
+import HeroButtons from '../components/v2/HeroButtons.jsx';
+import HeroCarousel from '../components/v2/HeroCarousel.jsx';
+import ProjectCard from '../components/v2/ProjectCard.astro';
+import projectsData from '../data/projects.json';
 
-const features = [
+const activeProjects = projectsData.slice(0, 6); // Take first 6 for preview
+const bounties = [
   {
-    icon: 'learn',
-    title: 'Learn NoM',
-    description: 'Understand the Network of Momentum from the ground up — architecture, consensus, and design philosophy.',
-    href: '/learn',
+    title: "Implement SPV Wallet Integration",
+    reward: "5,000 ZNN",
+    difficulty: "Advanced",
+    category: "Core Dev",
+    link: "#"
   },
   {
-    icon: 'bitcoin',
-    title: 'Bitcoin + Zenon',
-    description: 'Discover how Zenon builds alongside Bitcoin with trustless SPV interoperability — no wrapped tokens, no custodians.',
-    href: '/learn/bitcoin',
+    title: "Create NoM Video Explainer Series",
+    reward: "1,500 ZNN",
+    difficulty: "Intermediate",
+    category: "Marketing",
+    link: "#"
   },
   {
-    icon: 'community',
-    title: 'Community',
-    description: 'Connect with builders, researchers, and enthusiasts across forums, Telegram, and X.',
-    href: '/community',
-  },
-  {
-    icon: 'build',
-    title: 'Build on Zenon',
-    description: 'Access SDKs, documentation, and funding through Accelerator-Z to build the future of decentralized infrastructure.',
-    href: '/build',
-  },
-];
-
-const stats = [
-  { label: 'Feeless Transactions', description: 'Powered by Plasma from QSR fusion' },
-  { label: 'Dual-Ledger Architecture', description: 'Block-lattice meets meta-DAG' },
-  { label: 'Bitcoin-Native', description: 'Trustless SPV interoperability' },
+    title: "Rust SDK: WebSocket Event Subscription",
+    reward: "2,000 ZNN",
+    difficulty: "Intermediate",
+    category: "Tooling",
+    link: "#"
+  }
 ];
 
 const latestPosts = [
   {
     title: 'Why New Tokens? What Zenon Has to Do With Bitcoin',
-    excerpt: 'The most common question from Bitcoiners. Here is why ZNN and QSR exist and how they serve Bitcoin — not compete with it.',
+    excerpt: 'The most common question from Bitcoiners. We break down why ZNN/QSR are essential for Bitcoin-native scaling.',
     date: '2026-02-20',
     category: 'BTC + Zenon',
     slug: 'btc-thesis-why-new-tokens',
+    type: 'ANALYSIS',
+    source: 'HC1 Forum'
   },
   {
-    title: 'Dual-Ledger Architecture: What Makes Zenon Different',
-    excerpt: 'Block-lattice meets meta-DAG. Here is what that actually means and why it matters.',
+    title: 'The Road to Phase Z: Scaling Decentralization',
+    excerpt: 'A deep dive into the technical milestones required for the next evolution of NoM infrastructure.',
     date: '2026-02-21',
-    category: 'Architecture & Tech',
-    slug: 'zenon-dual-ledger',
+    category: 'Architecture',
+    slug: 'zenon-phase-z',
+    type: 'RECAP',
+    source: 'Zenon ORG'
   },
   {
-    title: 'The Bear Market Is Where Real Ones Build',
-    excerpt: 'Everyone left. The builders stayed. Here is what is happening in Zenon while the market looks away.',
+    title: 'Bitcoin Interpol: The Security of Dual-Ledger',
+    excerpt: 'How Zenon leverages Bitcoin security without sacrificing the speed of a meta-DAG architecture.',
     date: '2026-02-22',
-    category: 'Bear Market',
-    slug: 'bear-market-builders',
+    category: 'Interoperability',
+    slug: 'bitcoin-interpol',
+    type: 'DIGEST',
+    source: 'Medium'
+  },
+  {
+    title: 'Plasma: The Infinite Fuel of Zenon',
+    excerpt: 'Understanding the mechanics of feeless transactions through QSR fusion and resource management.',
+    date: '2026-02-23',
+    category: 'Protocol',
+    slug: 'zenon-plasma-mechanics',
+    type: 'TECHNICAL',
+    source: 'HC1 Forum'
+  },
+  {
+    title: 'The Role of Sentinel Nodes in Consensus',
+    excerpt: 'More than just voters. Sentinels provide the decentralized heartbeat of the Network of Momentum.',
+    date: '2026-02-24',
+    category: 'Network',
+    slug: 'sentinel-role-consensus',
+    type: 'ANALYSIS',
+    source: 'Zenon ORG'
+  },
+  {
+    title: 'Supernova: The Universal Decentralized App Engine',
+    excerpt: 'Why the next hardfork is the most important technical upgrade in Zenon history.',
+    date: '2026-02-25',
+    category: 'Hardfork',
+    slug: 'supernova-upgrade-path',
+    type: 'RECAP',
+    source: 'Ecosystem'
   },
 ];
 ---
 
-<BaseLayout title="Home">
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden cyber-grid pt-24 pb-32">
-    <div class="absolute inset-0 bg-gradient-to-b from-neon-green/10 to-transparent pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <div class="inline-block px-4 py-1 rounded-full border border-neon-green/30 bg-neon-green/5 text-neon-green text-sm font-medium mb-6 backdrop-blur-sm animate-pulse">
-          Network of Momentum • 7 Years of Evolution
-        </div>
-        <h1 class="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
-          Stay ahead of the <span class="text-neon-green text-glow">momentum</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-pistachio/80 mb-10 max-w-2xl mx-auto">
-          Never miss a momentum. The definitive resource hub for Zenon, the Network of Momentum — research, documentation, and ecosystem resources in one place.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <a
-            href="/build"
-            class="group relative inline-flex items-center justify-center px-8 py-4 bg-neon-green text-bg font-bold rounded-sm hover:-translate-y-1 transition-all"
-          >
-            <span class="relative z-10 inline-flex items-center">
-              Start Building
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </span>
-            <!-- Subtle animated dots line under CTA text -->
-            <div
-              class="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-1 h-[2px] w-24 opacity-40 mix-blend-overlay group-hover:opacity-70 group-hover:scale-110 transition-transform transition-opacity duration-300"
-              style="background-image: radial-gradient(rgba(0,0,0,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"
-            ></div>
-          </a>
-          <a
-            href="/research"
-            class="inline-flex items-center justify-center px-10 py-4 border border-neon-green/50 text-neon-green font-bold rounded-sm hover:bg-neon-green/10 transition-all backdrop-blur-sm"
-          >
-            Browse Research
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+<BaseLayout title="NoM Zitadel | The Definitive Zenon Hub">
+  <!-- Scroll Narrator Navigation (Fixed Side) -->
+  <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-6 opacity-0 pointer-events-none transition-all duration-1000" id="scroll-narrator">
+     <div class="nav-dot active group cursor-pointer" data-target="hero">
+        <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
+     </div>
+     <div class="nav-dot group cursor-pointer" data-target="articles">
+        <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
+     </div>
+     <div class="nav-dot group cursor-pointer" data-target="bounties">
+        <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
+     </div>
+     <div class="nav-dot group cursor-pointer" data-target="vision">
+        <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
+     </div>
+  </div>
 
-  <!-- Feature Cards -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {features.map((feature) => (
-        <FeatureCard {...feature} />
-      ))}
-    </div>
-  </section>
-
-  <!-- Stats Row / USPs -->
-  <section class="border-y border-neon-green/10 bg-card/50 backdrop-blur-sm backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-        {stats.map((stat) => (
-          <div class="group">
-            <h3 class="text-2xl font-bold text-neon-green mb-3 group-hover:text-glow transition-all">{stat.label}</h3>
-            <p class="text-text-dim leading-relaxed">{stat.description}</p>
+  <!-- Section 1: Hero (Expanded & Optimized for Desktop) -->
+  <section id="hero" class="w-full min-h-screen relative flex flex-col justify-center overflow-hidden cyber-grid z-30 pt-20 pb-20">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,255,68,0.05)_0%,transparent_60%))] pointer-events-none"></div>
+    <div class="relative z-10 w-full px-6 sm:px-8 lg:px-12 transition-all duration-1000 flex-1 flex flex-col justify-center" data-animate>
+       
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-start mt-12 mb-12">
+          <!-- Left Column (~60% -> col-span-7) -->
+          <div class="lg:col-span-7 flex flex-col text-left xl:pr-8 relative">
+            <!-- Block Badge - Positioned absolute so it doesn't push the title down from the carousel top -->
+            <div class="absolute -top-14 left-0 inline-flex items-center gap-3 px-3 py-1 bg-amber-950/40 text-amber-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase rounded-sm border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.05)]">
+               <svg class="w-2.5 h-2.5 fill-current drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] animate-pulse" viewBox="0 0 24 24">
+                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+               </svg>
+               Block #709,632
+            </div>
+           <h1 class="text-6xl md:text-8xl xl:text-[7.5rem] font-black text-text-bright mb-12 leading-[0.9] tracking-tighter">
+             Stay Ahead of the <br/><span class="text-[#11FF44] text-glow inline-block mt-4 border-b-[10px] border-[#11FF44] pb-4">Momentum</span>
+           </h1>
+           <p class="text-xl xl:text-2xl text-text-dim mb-12 max-w-2xl leading-relaxed">
+             The definitive resource hub for everything Zenon. Connect, learn, build, and create the future of the Network of Momentum.
+           </p>
+           
+           <HeroButtons client:load />
           </div>
-        ))}
-      </div>
+
+          <div class="lg:col-span-5 flex flex-col h-full min-h-[500px]">
+              <HeroCarousel client:load />
+          </div>
+       </div>
+
     </div>
+
+
   </section>
 
-  <!-- Latest Posts -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <div class="flex items-center justify-between mb-12">
-      <h2 class="text-3xl font-bold text-white tracking-tight">Latest from <span class="text-neon-green">NoM Zitadel</span></h2>
-      <a href="/blog" class="text-neon-green hover:text-white transition-colors font-medium border-b border-neon-green/30 pb-1">
-        View all &rarr;
+  <!-- Section 2: Latest Articles -->
+  <section id="articles" class="w-full px-6 sm:px-8 lg:px-12 py-32 border-b border-white/5 scroll-mt-20 relative">
+    <div class="absolute right-0 top-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center_right,rgba(108,239,75,0.03)_0%,transparent_50%))] pointer-events-none"></div>
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 relative z-10 opacity-0 translate-y-8 transition-all duration-700" data-animate>
+      <div class="max-w-2xl">
+        <h2 class="text-3xl md:text-5xl font-bold text-text-bright mb-4 tracking-tight"><span class="text-neon-green">Latest</span> Articles</h2>
+        <p class="text-text-dim text-lg">Curated intelligence and architectural deep-dives from across the Zenon ecosystem.</p>
+      </div>
+      <a href="/blog" class="inline-flex items-center text-neon-green font-semibold hover:text-text-bright transition-colors group">
+        All Articles
+        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 opacity-0 translate-y-12 transition-all duration-1000 delay-200" data-animate>
       {latestPosts.map((post) => (
         <BlogCard {...post} />
       ))}
     </div>
   </section>
+
+  <!-- Section 3: Active Initiatives Dashboard (The Switchboard) -->
+  <section id="bounties" class="py-32 border-b border-white/5 relative overflow-hidden scroll-mt-20">
+    <div class="absolute inset-0 cyber-grid opacity-10 pointer-events-none"></div>
+    <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_bottom,rgba(108,239,75,0.05)_0%,transparent_50%))] pointer-events-none"></div>
+    
+    <div class="w-full px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Dashboard Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-10 opacity-0 translate-y-8 transition-all duration-700" data-animate>
+        <div class="max-w-2xl">
+          <h2 class="text-4xl md:text-6xl font-black text-text-bright mb-6 tracking-tight">
+            Active <span class="text-neon-green text-glow">Initiatives</span>
+          </h2>
+          <p class="text-text-dim text-lg md:text-xl leading-relaxed">
+            Real-time ecosystem dashboard. See project status and earn by contributing to 
+            <span class="text-neon-green font-bold text-glow">MicroWorkz</span>.
+          </p>
+        </div>
+
+        <!-- Legend (Status Indicators) -->
+        <div class="flex items-center gap-8 bg-black/40 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 self-start md:self-auto">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_8px_#6cef4b]"></span>
+            <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">Active</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-[#f7931a] shadow-[0_0_8px_#f7931a]"></span>
+            <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">On Hold</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Dashboard Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- Left: Earn Momentum (Bounties) -->
+        <div class="lg:col-span-4 flex flex-col opacity-0 translate-x-[-20px] transition-all duration-1000 delay-200" data-animate>
+          <div class="mb-8 flex items-center justify-between">
+            <h3 class="text-xs font-black text-neon-green uppercase tracking-[0.3em]">Earn Momentum</h3>
+          </div>
+          <div class="flex flex-col gap-6">
+            {bounties.map((bounty) => (
+              <BountyCard {...bounty} />
+            ))}
+            
+            <a href="#" class="group p-5 rounded-lg border border-neon-green/30 bg-neon-green/5 flex items-center justify-center gap-2 hover:bg-neon-green/10 transition-all text-center">
+              <span class="text-white font-bold text-lg uppercase tracking-widest">View All Workz</span>
+              <span class="text-neon-green group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Projects Grid -->
+        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 opacity-0 translate-x-[20px] transition-all duration-1000 delay-400" data-animate>
+          {activeProjects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Footer Link -->
+      <div class="mt-20 text-center opacity-0 transition-all duration-700 delay-700" data-animate>
+        <a href="#" class="inline-flex items-center text-text-dim hover:text-neon-green transition-colors text-xs font-bold tracking-[0.2em] uppercase group">
+          Explore Full Directory (40+) 
+          <span class="ml-3 transform group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Section 4: Vision & Values -->
+  <section id="vision" class="w-full relative flex items-center justify-center py-32 z-30 border-b border-white/5 scroll-mt-20">
+    <div class="absolute inset-0 cyber-grid opacity-10 pointer-events-none"></div>
+    <div class="absolute left-0 top-0 w-full h-full bg-[radial-gradient(ellipse_at_center_left,rgba(108,239,75,0.03)_0%,transparent_50%))] pointer-events-none"></div>
+    
+    <div class="px-6 sm:px-8 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+       
+       <!-- Left Side: Abstract Decorative Visual -->
+       <div class="lg:col-span-4 xl:col-span-5 h-[300px] lg:h-full min-h-[500px] relative flex items-center justify-center opacity-0 translate-y-8 blur-[2px] transition-all duration-1000" data-animate>
+         <div class="absolute inset-0 bg-card/30 border border-white/5 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] flex items-center justify-center">
+            
+            <!-- Animated Background Grid Pattern -->
+            <svg class="absolute inset-0 w-full h-full text-neon-green/10" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="dotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <circle fill="currentColor" cx="2" cy="2" r="1"></circle>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="100%" height="100%" fill="url(#dotGrid)"></rect>
+            </svg>
+
+            <!-- Matrix Style ASCII Zenon Logo -->
+               <pre class="font-mono text-[#11FF44] text-sm sm:text-base md:text-lg lg:text-xl leading-[1.2] tracking-widest text-glow select-none transition-all duration-1000 ease-in-out opacity-90 drop-shadow-[0_0_8px_rgba(17,255,68,0.6)] text-center">
+gm taproot 🥕
+
+,zzzzzzzzzzzzzzzzzzzzzzzz,
+            .:1zzzzzzzzz. 
+          .:qqzzzzqqq,    
+       ,;1zzzzzqqq,       
+    ,;1zzzzzqqq,          
+ ,;qzzzzz1qq,             
+,zzzzzzzzzzzzzzzzzzzzzzzz,
+,zzzzzq;.           1zzzz,
+,zzzzzzzzq,         1zzzz,
+,zzzzzzzzzz1:       1zzzz,
+,zzzzq:1zzzzzq;.    1zzzz,
+,zzzzq  ,qzzzzzz1,  1zzzz,
+,zzzzq    .;qzzzzzq:1zzzz,
+,zzzzq       ,qzzzzzzzzzz,
+,zzzzq         .;qzzzzzzz,
+
+ZENON NETWORK
+               </pre>
+            
+            <div class="absolute inset-0 bg-gradient-to-tr from-black via-transparent to-neon-green/5 pointer-events-none"></div>
+         </div>
+       </div>
+
+       <!-- Right Side: Vision & Values Text -->
+       <div class="lg:col-span-8 xl:col-span-7 flex flex-col py-8">
+         
+         <!-- Vision Block -->
+         <div class="mb-24 opacity-0 translate-x-[20px] transition-all duration-1000 delay-200" data-animate>
+           <div class="inline-flex items-center gap-2 mb-6 text-text-dim/80 text-xs font-mono font-bold tracking-[0.2em] uppercase">
+             <span class="text-neon-green">↑</span> VISION
+           </div>
+           
+           <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-text-bright mb-8 leading-[1.2] tracking-tight">
+             Zenon is building the foundation for a <br class="hidden xl:block"/>
+             <span class="text-neon-green font-black">sovereign, feeless, and Bitcoin-aligned</span> network.
+           </h2>
+           
+           <p class="text-lg text-text-dim/90 leading-relaxed max-w-2xl font-light">
+             Network of Momentum is a dual-ledger, dual-coin protocol anchored to Bitcoin's proof-of-work — designed for a world where financial infrastructure should be open, permissionless, and owned by no one.
+           </p>
+         </div>
+
+         <!-- Values Header -->
+         <div class="mb-12 opacity-0 transition-opacity duration-1000 delay-300" data-animate>
+            <h3 class="text-xl font-mono text-text-bright tracking-widest uppercase pb-6 border-b border-white/10">
+              VALUES
+            </h3>
+         </div>
+
+         <!-- Values Grid -->
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+           
+           <!-- Value 01 -->
+           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-400" data-animate>
+             <div class="flex items-center gap-3 mb-4">
+               <span class="w-1.5 h-1.5 bg-[#4A3EE0]"></span> <!-- Abstract reference colored square -->
+               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">01</span>
+             </div>
+             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Bitcoin Alignment</h4>
+             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
+               Zenon doesn't compete with Bitcoin. It extends its reach. By anchoring to Bitcoin's proof-of-work, NoM inherits its security without replicating its limitations.
+             </p>
+           </div>
+
+           <!-- Value 02 -->
+           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-500" data-animate>
+             <div class="flex items-center gap-3 mb-4">
+               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
+               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">02</span>
+             </div>
+             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Fairness</h4>
+             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
+               No premine. No VC allocation. No trusted setup. ZNN and QSR entered circulation through community participation alone — the way it should be.
+             </p>
+           </div>
+
+           <!-- Value 03 -->
+           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-600" data-animate>
+             <div class="flex items-center gap-3 mb-4">
+               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
+               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">03</span>
+             </div>
+             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Permissionless</h4>
+             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
+               Anyone can run a node, build a dApp, or submit a funding proposal. Accelerator-Z puts governance and capital in the hands of the community, not a foundation.
+             </p>
+           </div>
+
+           <!-- Value 04 -->
+           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-700" data-animate>
+             <div class="flex items-center gap-3 mb-4">
+               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
+               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">04</span>
+             </div>
+             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Feeless by Design</h4>
+             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
+               The Plasma mechanism eliminates transaction fees without compromising security. Building on NoM shouldn't cost you anything.
+             </p>
+           </div>
+
+         </div>
+
+       </div>
+    </div>
+  </section>
+
+
 </BaseLayout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Utility classes triggered by JS IntersectionObserver */
+  .animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    filter: blur(0px) !important;
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll-driven animations and Side Nav updates
+  const sections = document.querySelectorAll('section, footer');
+  const navDots = document.querySelectorAll('.nav-dot');
+  const narrator = document.getElementById('scroll-narrator');
+  
+  let isScrolling;
+  let scrollInTimeout;
+
+  window.addEventListener('scroll', () => {
+    if (!narrator) return;
+
+    // Fade in with slight delay if not already visible
+    if (!narrator.classList.contains('opacity-100')) {
+      clearTimeout(scrollInTimeout);
+      scrollInTimeout = setTimeout(() => {
+        narrator.classList.remove('opacity-0', 'pointer-events-none');
+        narrator.classList.add('opacity-100', 'pointer-events-auto');
+      }, 300); // 300ms delay to fade in
+    }
+
+    // Clear previous timeout and set new one to fade out
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      narrator.classList.remove('opacity-100', 'pointer-events-auto');
+      narrator.classList.add('opacity-0', 'pointer-events-none');
+    }, 1500); // Fade out 1.5s after scrolling stops
+  }, { passive: true });
+
+  if (sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 1. Update side navigation active state
+          if (entry.target.tagName.toLowerCase() !== 'footer') {
+            navDots.forEach(dot => {
+              if (dot.getAttribute('data-target') === entry.target.id) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+
+          // 2. Trigger text/card animations inside the section
+          const elementsToAnimate = entry.target.querySelectorAll('[data-animate]');
+          elementsToAnimate.forEach(el => el.classList.add('animate-in'));
+        }
+      });
+    }, {
+      root: null, // use viewport
+      threshold: 0.2 // Trigger when 20% of the section is visible
+    });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Side navigation click scroll
+    navDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const targetId = dot.getAttribute('data-target');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          const y = targetSection.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+</script>
