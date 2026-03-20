@@ -63,8 +63,7 @@ import logo from '../assets/logo.jpg';
       .join('');
   }
 
-  // Defer everything else until DOM is fully parsed
-  window.addEventListener('DOMContentLoaded', () => {
+  function initLockScreen() {
     const lockScreen = document.getElementById('site-lock-screen');
     const lockForm = document.getElementById('lock-form');
     const passwordInput = document.getElementById('lock-password');
@@ -121,7 +120,14 @@ import logo from '../assets/logo.jpg';
         }
       });
     }
-  });
+  }
+
+  // Defer everything else until DOM is fully parsed to avoid missing the event
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLockScreen);
+  } else {
+    initLockScreen();
+  }
 </script>
 
 <style>
