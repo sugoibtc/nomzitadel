@@ -198,24 +198,31 @@ const MatrixRain = () => {
     // Smoother speed interval per user request
     const interval = setInterval(draw, 60);
     
-    // Handle container resizes
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      columns = Math.floor(canvas.width / charWidth);
-      rows = Math.floor(canvas.height / fontSize);
-      drops = [];
-      for (let x = 0; x < columns; x++) {
-        drops[x] = 1;
+    // ResizeObserver is essential because the LockScreen hides the component (display: none),
+    // causing offsetWidth to be 0 on mount. This ensures dimensions are captured upon unlock.
+    const resizeObserver = new ResizeObserver(() => {
+      if (canvas.offsetWidth > 0 && canvas.offsetHeight > 0) {
+         canvas.width = canvas.offsetWidth;
+         canvas.height = canvas.offsetHeight;
+         columns = Math.floor(canvas.width / charWidth);
+         rows = Math.floor(canvas.height / fontSize);
+         
+         // Only reset drops if columns changed drastically or initially 0
+         if (drops.length !== columns) {
+            drops = [];
+            for (let x = 0; x < columns; x++) {
+              // Stagger the initial drops
+              drops[x] = Math.floor(Math.random() * -50);
+            }
+         }
       }
-      revealedEgg.clear();
-      // Keep revealed characters but they will instantly redraw at new center
-    };
-    window.addEventListener('resize', handleResize);
+    });
+    
+    resizeObserver.observe(canvas);
     
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
     };
   }, []);
 
