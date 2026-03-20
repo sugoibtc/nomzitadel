@@ -47,7 +47,13 @@ import logo from '../assets/logo.jpg';
 <script is:inline>
   // Hide lock screen immediately if authorized to prevent flash
   const TARGET_HASH = "c08c56cca7a12b674ab1369e0907a045be169830b317c7ffda6f62a262bd047c";
-  const isAuthorized = localStorage.getItem('nomSiteLock_V2') === 'granted';
+  
+  let isAuthorized = false;
+  try {
+    isAuthorized = localStorage.getItem('nomSiteLock_V2') === 'granted';
+  } catch(e) {
+    console.warn("Storage access denied.", e);
+  }
   
   const siteLockScreen = document.getElementById('site-lock-screen');
   if (isAuthorized && siteLockScreen) {
@@ -91,7 +97,11 @@ import logo from '../assets/logo.jpg';
         const inputHash = await hashPassword(inputVal);
 
         if (inputHash === TARGET_HASH) {
-          localStorage.setItem('nomSiteLock_V2', 'granted');
+          try {
+            localStorage.setItem('nomSiteLock_V2', 'granted');
+          } catch(e) {
+            console.warn("Could not save auth state.", e);
+          }
           lockScreen?.classList.add('opacity-0', 'pointer-events-none');
           setTimeout(() => {
             lockScreen?.remove();
