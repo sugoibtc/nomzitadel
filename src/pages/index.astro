@@ -5,31 +5,20 @@ import BountyCard from '../components/v2/BountyCard.astro';
 import BlogCard from '../components/BlogCard.astro';
 import HeroButtons from '../components/v2/HeroButtons.jsx';
 import HeroCarousel from '../components/v2/HeroCarousel.jsx';
+import HeroText from '../components/v2/HeroText.jsx';
+import VisionValues from '../components/v2/VisionValues.jsx';
+import MatrixRain from '../components/v2/MatrixRain.jsx';
 import ProjectCard from '../components/v2/ProjectCard.astro';
 import projectsData from '../data/projects.json';
 
 const activeProjects = projectsData.slice(0, 6); // Take first 6 for preview
 const bounties = [
   {
-    title: "Implement SPV Wallet Integration",
-    reward: "5,000 ZNN",
-    difficulty: "Advanced",
-    category: "Core Dev",
-    link: "#"
-  },
-  {
-    title: "Create NoM Video Explainer Series",
-    reward: "1,500 ZNN",
-    difficulty: "Intermediate",
-    category: "Marketing",
-    link: "#"
-  },
-  {
-    title: "Rust SDK: WebSocket Event Subscription",
-    reward: "2,000 ZNN",
-    difficulty: "Intermediate",
-    category: "Tooling",
-    link: "#"
+    title: "Solve the Treasure Hunt",
+    reward: "321 ZNN",
+    difficulty: "Master",
+    category: "Quest",
+    link: "/treasure-hunt"
   }
 ];
 
@@ -97,10 +86,7 @@ const latestPosts = [
      <div class="nav-dot active group cursor-pointer" data-target="hero">
         <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
      </div>
-     <div class="nav-dot group cursor-pointer" data-target="articles">
-        <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
-     </div>
-     <div class="nav-dot group cursor-pointer" data-target="bounties">
+     <div class="nav-dot group cursor-pointer" data-target="ecosystem">
         <div class="dot w-2 h-2 rounded-full bg-text-dim/30 group-hover:bg-text-dim group-[.active]:bg-neon-green group-[.active]:shadow-[0_0_12px_#6cef4b] group-[.active]:scale-150 transition-all"></div>
      </div>
      <div class="nav-dot group cursor-pointer" data-target="vision">
@@ -115,20 +101,8 @@ const latestPosts = [
        
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 xl:gap-32 items-start mt-12 mb-12">
           <!-- Left Column (~60% -> col-span-7) -->
-          <div class="lg:col-span-7 flex flex-col text-left xl:pr-8 relative">
-            <!-- Block Badge - Positioned absolute so it doesn't push the title down from the carousel top -->
-            <div class="absolute -top-14 left-0 inline-flex items-center gap-3 px-3 py-1 bg-amber-950/40 text-amber-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase rounded-sm border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.05)]">
-               <svg class="w-2.5 h-2.5 fill-current drop-shadow-[0_0_8px_rgba(245,158,11,0.8)] animate-pulse" viewBox="0 0 24 24">
-                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
-               </svg>
-               Block #709,632
-            </div>
-           <h1 class="text-6xl md:text-8xl xl:text-[7.5rem] font-black text-text-bright mb-12 leading-[0.9] tracking-tighter">
-             Stay Ahead of the <br/><span class="text-[#11FF44] text-glow inline-block mt-4 border-b-[10px] border-[#11FF44] pb-4">Momentum</span>
-           </h1>
-           <p class="text-xl xl:text-2xl text-text-dim mb-12 max-w-2xl leading-relaxed">
-             The definitive resource hub for everything Zenon. Connect, learn, build, and create the future of the Network of Momentum.
-           </p>
+          <div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left xl:pr-8 relative">
+            <HeroText client:load />
            
            <HeroButtons client:load />
           </div>
@@ -143,144 +117,129 @@ const latestPosts = [
 
   </section>
 
-  <!-- Section 2: Latest Articles -->
-  <section id="articles" class="w-full px-6 sm:px-8 lg:px-12 py-32 border-b border-white/5 scroll-mt-20 relative">
+  <!-- Section 2: Ecosystem (Articles & Bounties) -->
+  <section id="ecosystem" class="w-full px-6 sm:px-8 lg:px-12 py-32 border-b border-white/5 scroll-mt-20 relative overflow-hidden">
     <div class="absolute right-0 top-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center_right,rgba(108,239,75,0.03)_0%,transparent_50%))] pointer-events-none"></div>
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 relative z-10 opacity-0 translate-y-8 transition-all duration-700" data-animate>
-      <div class="max-w-2xl">
-        <h2 class="text-3xl md:text-5xl font-bold text-text-bright mb-4 tracking-tight"><span class="text-neon-green">Latest</span> Articles</h2>
-        <p class="text-text-dim text-lg">Curated intelligence and architectural deep-dives from across the Zenon ecosystem.</p>
-      </div>
-      <a href="/blog" class="inline-flex items-center text-neon-green font-semibold hover:text-text-bright transition-colors group">
-        All Articles
-        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 opacity-0 translate-y-12 transition-all duration-1000 delay-200" data-animate>
-      {latestPosts.map((post) => (
-        <BlogCard {...post} />
-      ))}
-    </div>
-  </section>
-
-  <!-- Section 3: Active Initiatives Dashboard (The Switchboard) -->
-  <section id="bounties" class="py-32 border-b border-white/5 relative overflow-hidden scroll-mt-20">
-    <div class="absolute inset-0 cyber-grid opacity-10 pointer-events-none"></div>
     <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_bottom,rgba(108,239,75,0.05)_0%,transparent_50%))] pointer-events-none"></div>
     
-    <div class="w-full px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="w-full grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24 relative z-10">
       
-      <!-- Dashboard Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-10 opacity-0 translate-y-8 transition-all duration-700" data-animate>
-        <div class="max-w-2xl">
-          <h2 class="text-4xl md:text-6xl font-black text-text-bright mb-6 tracking-tight">
-            Active <span class="text-neon-green text-glow">Initiatives</span>
-          </h2>
-          <p class="text-text-dim text-lg md:text-xl leading-relaxed">
-            Real-time ecosystem dashboard. See project status and earn by contributing to 
-            <span class="text-neon-green font-bold text-glow">MicroWorkz</span>.
-          </p>
+      <!-- Left Side: Latest Articles -->
+      <div class="xl:col-span-6 flex flex-col">
+        <div class="bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/10 flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6 opacity-0 translate-y-8 transition-all duration-700 hover:border-neon-green/30 relative overflow-hidden group/header cyber-grid" data-animate>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,255,68,0.1)_0%,transparent_70%))] pointer-events-none"></div>
+          <div class="max-w-xl relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-bright mb-2 tracking-tight"><span class="text-neon-green">Latest</span> Articles</h2>
+            <p class="text-text-dim text-lg">Curated intelligence from the Zenon ecosystem.</p>
+          </div>
+          <a href="/blog" class="relative z-10 inline-flex items-center text-neon-green font-semibold hover:text-text-bright transition-colors group whitespace-nowrap">
+            All Articles
+            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-
-        <!-- Legend (Status Indicators) -->
-        <div class="flex items-center gap-8 bg-black/40 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 self-start md:self-auto">
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_8px_#6cef4b]"></span>
-            <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">Active</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#f7931a] shadow-[0_0_8px_#f7931a]"></span>
-            <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">On Hold</span>
-          </div>
+        
+        <!-- 2x2 Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 opacity-0 translate-y-12 transition-all duration-1000 delay-200" data-animate>
+          {latestPosts.slice(0, 4).map((post) => (
+            <div class="transform origin-top-left flex flex-col h-full">
+              <BlogCard {...post} />
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Main Dashboard Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-        
-        <!-- Left: Earn Momentum (Bounties) -->
-        <div class="lg:col-span-4 flex flex-col opacity-0 translate-x-[-20px] transition-all duration-1000 delay-200" data-animate>
-          <div class="mb-8 flex items-center justify-between">
-            <h3 class="text-xs font-black text-neon-green uppercase tracking-[0.3em]">Earn Momentum</h3>
+      <!-- Right Side: Start Contributing -->
+      <div class="xl:col-span-6 flex flex-col">
+        <!-- Dashboard Header -->
+        <div class="bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/10 flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6 opacity-0 translate-y-8 transition-all duration-700 hover:border-neon-green/30 relative overflow-hidden group/header cyber-grid" data-animate>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,255,68,0.05)_0%,transparent_60%))] pointer-events-none"></div>
+          <div class="relative z-10">
+            <h2 class="text-3xl md:text-4xl font-black text-text-bright mb-2 tracking-tight">
+              Start <span class="text-neon-green text-glow">Contributing</span>
+            </h2>
+            <p class="text-text-dim text-lg leading-relaxed">
+              Earn ZNN by contributing to high-impact 
+              <span class="text-neon-green font-bold text-glow">MicroWorkz</span>.
+            </p>
           </div>
-          <div class="flex flex-col gap-6">
-            {bounties.map((bounty) => (
-              <BountyCard {...bounty} />
-            ))}
-            
-            <a href="#" class="group p-5 rounded-lg border border-neon-green/30 bg-neon-green/5 flex items-center justify-center gap-2 hover:bg-neon-green/10 transition-all text-center">
-              <span class="text-white font-bold text-lg uppercase tracking-widest">View All Workz</span>
-              <span class="text-neon-green group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+
+          <!-- Legend -->
+          <div class="flex items-center gap-4 self-start sm:self-auto shrink-0 relative z-10">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_8px_#6cef4b]"></span>
+              <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">Active</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#f7931a] shadow-[0_0_8px_#f7931a]"></span>
+              <span class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em]">On Hold</span>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Projects Grid -->
-        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 opacity-0 translate-x-[20px] transition-all duration-1000 delay-400" data-animate>
-          {activeProjects.map((project) => (
-            <ProjectCard {...project} />
+        <!-- 2x2 Grid of Bounties -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 opacity-0 translate-y-8 transition-all duration-1000 delay-200" data-animate>
+          {bounties.slice(0, 1).map((bounty) => (
+             <BountyCard {...bounty} />
+          ))}
+          {/* Empty + Slots */}
+          {Array(3).fill(null).map(() => (
+            <a href="#" class="h-full min-h-[160px] rounded-xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center hover:bg-white/10 transition-all duration-300 group">
+              <span class="text-4xl text-white/20 font-light group-hover:text-neon-green group-hover:scale-125 transition-transform duration-300 group-hover:drop-shadow-[0_0_10px_rgba(17,255,68,0.5)]">+</span>
+            </a>
           ))}
         </div>
 
+        <!-- Active Initiatives Header -->
+        <div class="bg-black/40 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/10 flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-6 opacity-0 translate-y-8 transition-all duration-700 delay-300 hover:border-neon-green/30 relative overflow-hidden group/header cyber-grid" data-animate>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(17,255,68,0.1)_0%,transparent_70%))] pointer-events-none"></div>
+          <div class="relative z-10">
+            <h2 class="text-2xl lg:text-3xl font-black text-text-bright mb-1 tracking-tight">
+              <span class="text-neon-green">Active</span> Initiatives
+            </h2>
+            <p class="text-text-dim text-sm">High-impact network development projects.</p>
+          </div>
+          <a href="/projects" class="relative z-10 text-xs text-neon-green hover:text-white uppercase tracking-widest font-bold whitespace-nowrap">View All →</a>
+        </div>
+
+        <!-- 2x2 Grid of Initiatives -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 opacity-0 translate-y-8 transition-all duration-1000 delay-400" data-animate>
+           {activeProjects.slice(0, 4).map((project) => (
+              <ProjectCard {...project} />
+           ))}
+        </div>
       </div>
 
-      <!-- Footer Link -->
-      <div class="mt-20 text-center opacity-0 transition-all duration-700 delay-700" data-animate>
-        <a href="#" class="inline-flex items-center text-text-dim hover:text-neon-green transition-colors text-xs font-bold tracking-[0.2em] uppercase group">
-          Explore Full Directory (40+) 
-          <span class="ml-3 transform group-hover:translate-x-1 transition-transform">→</span>
-        </a>
-      </div>
-      
     </div>
   </section>
 
   <!-- Section 4: Vision & Values -->
-  <section id="vision" class="w-full relative flex items-center justify-center py-32 z-30 border-b border-white/5 scroll-mt-20">
+  <section id="vision" class="w-full relative flex items-center justify-center pt-16 pb-32 z-30 border-b border-white/5 scroll-mt-20">
     <div class="absolute inset-0 cyber-grid opacity-10 pointer-events-none"></div>
     <div class="absolute left-0 top-0 w-full h-full bg-[radial-gradient(ellipse_at_center_left,rgba(108,239,75,0.03)_0%,transparent_50%))] pointer-events-none"></div>
     
-    <div class="px-6 sm:px-8 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+    <div class="px-6 sm:px-8 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
        
-       <!-- Left Side: Abstract Decorative Visual -->
-       <div class="lg:col-span-4 xl:col-span-5 h-[300px] lg:h-full min-h-[500px] relative flex items-center justify-center opacity-0 translate-y-8 blur-[2px] transition-all duration-1000" data-animate>
-         <div class="absolute inset-0 bg-card/30 border border-white/5 rounded-2xl overflow-hidden backdrop-blur-sm shadow-[inset_0_0_50px_rgba(0,0,0,0.5)] flex items-center justify-center">
-            
-            <!-- Animated Background Grid Pattern -->
-            <svg class="absolute inset-0 w-full h-full text-neon-green/10" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="dotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                  <circle fill="currentColor" cx="2" cy="2" r="1"></circle>
-                </pattern>
-              </defs>
-              <rect x="0" y="0" width="100%" height="100%" fill="url(#dotGrid)"></rect>
-            </svg>
-
-            <!-- Matrix Style ASCII Zenon Logo -->
-               <pre class="font-mono text-[#11FF44] text-sm sm:text-base md:text-lg lg:text-xl leading-[1.2] tracking-widest text-glow select-none transition-all duration-1000 ease-in-out opacity-90 drop-shadow-[0_0_8px_rgba(17,255,68,0.6)] text-center">
-gm taproot 🥕
-
-,zzzzzzzzzzzzzzzzzzzzzzzz,
-            .:1zzzzzzzzz. 
-          .:qqzzzzqqq,    
-       ,;1zzzzzqqq,       
-    ,;1zzzzzqqq,          
- ,;qzzzzz1qq,             
-,zzzzzzzzzzzzzzzzzzzzzzzz,
-,zzzzzq;.           1zzzz,
-,zzzzzzzzq,         1zzzz,
-,zzzzzzzzzz1:       1zzzz,
-,zzzzq:1zzzzzq;.    1zzzz,
-,zzzzq  ,qzzzzzz1,  1zzzz,
-,zzzzq    .;qzzzzzq:1zzzz,
-,zzzzq       ,qzzzzzzzzzz,
-,zzzzq         .;qzzzzzzz,
-
-ZENON NETWORK
-               </pre>
-            
-            <div class="absolute inset-0 bg-gradient-to-tr from-black via-transparent to-neon-green/5 pointer-events-none"></div>
+       <!-- Left Side: Matrix Rain Treasure Hunt Portal -->
+       <div class="lg:col-span-4 xl:col-span-5 flex flex-col gap-8 opacity-0 translate-y-8 transition-all duration-1000 w-full" data-animate>
+         <MatrixRain client:only="react" />
+         
+         <!-- Taproot Activation Card -->
+         <div class="flex justify-center">
+           <a href="/treasure-hunt" class="group px-8 py-5 border border-[#FF9900]/30 bg-black/60 backdrop-blur-md rounded-xl transform transition-all duration-300 hover:-translate-y-1 hover:border-[#FF9900] hover:bg-black/80 text-center relative overflow-hidden shadow-[0_10px_30px_-10px_rgba(255,153,0,0.2)]">
+             <div class="absolute inset-0 bg-gradient-to-br from-[#FF9900]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+             <div class="relative z-10">
+               <span class="block text-[10px] text-[#FF9900] font-mono tracking-[0.3em] font-bold mb-1 opacity-90 animate-pulse">
+                 BLOCK #709,632
+               </span>
+               <h3 class="text-xl sm:text-2xl font-black text-white tracking-widest uppercase mb-2 [text-shadow:0_0_12px_rgba(255,153,0,0.6)]">
+                 Taproot Activation
+               </h3>
+               <span class="inline-flex items-center gap-2 text-[10px] font-mono text-gray-300 group-hover:text-white transition-colors uppercase tracking-[0.1em] font-bold">
+                 Enter Treasure Hunt 
+                 <span class="text-[#FF9900] group-hover:translate-x-1 transition-transform">→</span>
+               </span>
+             </div>
+           </a>
          </div>
        </div>
 
@@ -303,65 +262,8 @@ ZENON NETWORK
            </p>
          </div>
 
-         <!-- Values Header -->
-         <div class="mb-12 opacity-0 transition-opacity duration-1000 delay-300" data-animate>
-            <h3 class="text-xl font-mono text-text-bright tracking-widest uppercase pb-6 border-b border-white/10">
-              VALUES
-            </h3>
-         </div>
-
-         <!-- Values Grid -->
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-           
-           <!-- Value 01 -->
-           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-400" data-animate>
-             <div class="flex items-center gap-3 mb-4">
-               <span class="w-1.5 h-1.5 bg-[#4A3EE0]"></span> <!-- Abstract reference colored square -->
-               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">01</span>
-             </div>
-             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Bitcoin Alignment</h4>
-             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
-               Zenon doesn't compete with Bitcoin. It extends its reach. By anchoring to Bitcoin's proof-of-work, NoM inherits its security without replicating its limitations.
-             </p>
-           </div>
-
-           <!-- Value 02 -->
-           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-500" data-animate>
-             <div class="flex items-center gap-3 mb-4">
-               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
-               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">02</span>
-             </div>
-             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Fairness</h4>
-             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
-               No premine. No VC allocation. No trusted setup. ZNN and QSR entered circulation through community participation alone — the way it should be.
-             </p>
-           </div>
-
-           <!-- Value 03 -->
-           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-600" data-animate>
-             <div class="flex items-center gap-3 mb-4">
-               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
-               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">03</span>
-             </div>
-             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Permissionless</h4>
-             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
-               Anyone can run a node, build a dApp, or submit a funding proposal. Accelerator-Z puts governance and capital in the hands of the community, not a foundation.
-             </p>
-           </div>
-
-           <!-- Value 04 -->
-           <div class="opacity-0 translate-y-8 transition-all duration-1000 delay-700" data-animate>
-             <div class="flex items-center gap-3 mb-4">
-               <span class="w-1.5 h-1.5 bg-[#4A3EE0]/40"></span>
-               <span class="text-xs font-mono text-text-dim/70 tracking-widest font-bold">04</span>
-             </div>
-             <h4 class="text-lg font-bold text-text-bright mb-3 tracking-wide">Feeless by Design</h4>
-             <p class="text-text-dim/80 text-sm leading-relaxed max-w-sm font-light">
-               The Plasma mechanism eliminates transaction fees without compromising security. Building on NoM shouldn't cost you anything.
-             </p>
-           </div>
-
-         </div>
+         <!-- Values Section injected via Framer Motion Component -->
+         <VisionValues client:visible />
 
        </div>
     </div>

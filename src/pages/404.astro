@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Coming Zoon™">
+  <div class="fixed inset-0 bg-[#060606] flex flex-col items-center justify-center z-[100]">
+    <div class="w-48 sm:w-64 h-auto relative flex flex-col items-center group">
+      <!-- Glow effect behind -->
+      <div class="absolute inset-0 bg-[#11FF44] blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity duration-1000"></div>
+      
+      <!-- SVG ZNN geometric classic logo -->
+      <svg viewBox="0 0 100 156" class="w-full h-auto text-[#11FF44] drop-shadow-[0_0_15px_rgba(17,255,68,0.5)] z-10" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="square">
+        <defs>
+          <clipPath id="znn-clip">
+            <rect x="0" y="0" width="100" height="156" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#znn-clip)">
+          <line x1="-10" y1="10" x2="110" y2="10" />
+          <line x1="-10" y1="78" x2="110" y2="78" />
+          <line x1="10" y1="68" x2="10" y2="166" />
+          <line x1="90" y1="68" x2="90" y2="166" />
+          <line x1="-4" y1="78" x2="104" y2="10" />
+          <line x1="-4" y1="78" x2="104" y2="146" />
+        </g>
+      </svg>
+      
+      <!-- Text contents -->
+      <div class="mt-10 flex flex-col items-center text-center z-10 gap-1.5 w-full whitespace-nowrap">
+        <h1 class="sr-only">404 - Coming Zoon™</h1>
+        <p class="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] font-medium text-white/50">NOT WHERE YOU SHOULD BE</p>
+        <a href="/" class="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#11FF44] hover:text-white transition-colors duration-300 drop-shadow-[0_0_8px_rgba(17,255,68,0.6)]">CLICK HERE TO GET BACK</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
