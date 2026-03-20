@@ -45,15 +45,14 @@ import logo from '../assets/logo.jpg';
 </div>
 
 <script is:inline>
-  // Script runs immediately in the head or inline to block rendering if not authenticated
-  const lockScreen = document.getElementById('site-lock-screen');
-  const lockForm = document.getElementById('lock-form');
-  const passwordInput = document.getElementById('lock-password');
-  const errorMsg = document.getElementById('lock-error');
-  const appContent = document.getElementById('app-content');
-
-  // Hardcoded hashed target array to prevent raw string matching
+  // Hide lock screen immediately if authorized to prevent flash
   const TARGET_HASH = "c08c56cca7a12b674ab1369e0907a045be169830b317c7ffda6f62a262bd047c";
+  const isAuthorized = localStorage.getItem('nomSiteAccess') === 'granted';
+  
+  const siteLockScreen = document.getElementById('site-lock-screen');
+  if (isAuthorized && siteLockScreen) {
+     siteLockScreen.style.display = 'none';
+  }
 
   async function hashPassword(str) {
     const encoder = new TextEncoder();
@@ -64,61 +63,65 @@ import logo from '../assets/logo.jpg';
       .join('');
   }
 
-  // Check auth state immediately
-  if (localStorage.getItem('nomSiteAccess') === 'granted') {
-    if (lockScreen) lockScreen.remove();
-    if (appContent) {
-      appContent.classList.remove('hidden', 'opacity-0');
-      appContent.classList.add('opacity-100');
-    }
-    document.body.classList.remove('overflow-hidden');
-  } else {
-    // Ensure body is locked if unauthorized
-    document.body.classList.add('overflow-hidden');
-    if (appContent) {
-       appContent.classList.add('hidden', 'opacity-0');
-    }
-  }
+  // Defer everything else until DOM is fully parsed
+  window.addEventListener('DOMContentLoaded', () => {
+    const lockScreen = document.getElementById('site-lock-screen');
+    const lockForm = document.getElementById('lock-form');
+    const passwordInput = document.getElementById('lock-password');
+    const errorMsg = document.getElementById('lock-error');
+    const appContent = document.getElementById('app-content');
 
-  if (lockForm) {
-    lockForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const inputVal = passwordInput ? passwordInput.value : '';
-      const inputHash = await hashPassword(inputVal);
-
-      if (inputHash === TARGET_HASH) {
-        localStorage.setItem('nomSiteAccess', 'granted');
-        
-        // Aesthetic fade out of lock screen
-        lockScreen?.classList.add('opacity-0', 'pointer-events-none');
-        setTimeout(() => {
-          lockScreen?.remove();
-          if (appContent) {
-            appContent.classList.remove('hidden', 'opacity-0');
-            appContent.classList.add('opacity-100');
-          }
-          document.body.classList.remove('overflow-hidden');
-        }, 500);
-      } else {
-        if (passwordInput) {
-          passwordInput.value = '';
-          passwordInput.classList.add('border-red-500');
-        }
-        if (errorMsg) {
-          errorMsg.classList.remove('hidden');
-          errorMsg.classList.add('opacity-100');
-        }
-        setTimeout(() => {
-          if (passwordInput) passwordInput.classList.remove('border-red-500');
-          if (errorMsg) {
-            errorMsg.classList.add('hidden');
-            errorMsg.classList.remove('opacity-100');
-          }
-        }, 2000);
+    if (isAuthorized) {
+      if (lockScreen) lockScreen.remove();
+      if (appContent) {
+        appContent.classList.remove('hidden', 'opacity-0');
+        appContent.classList.add('opacity-100');
       }
-    });
-  }
+      document.body.classList.remove('overflow-hidden');
+    } else {
+      document.body.classList.add('overflow-hidden');
+      if (appContent) {
+         appContent.classList.add('hidden', 'opacity-0');
+      }
+    }
+
+    if (lockForm) {
+      lockForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const inputVal = passwordInput ? passwordInput.value : '';
+        const inputHash = await hashPassword(inputVal);
+
+        if (inputHash === TARGET_HASH) {
+          localStorage.setItem('nomSiteAccess', 'granted');
+          lockScreen?.classList.add('opacity-0', 'pointer-events-none');
+          setTimeout(() => {
+            lockScreen?.remove();
+            if (appContent) {
+              appContent.classList.remove('hidden', 'opacity-0');
+              appContent.classList.add('opacity-100');
+            }
+            document.body.classList.remove('overflow-hidden');
+          }, 500);
+        } else {
+          if (passwordInput) {
+            passwordInput.value = '';
+            passwordInput.classList.add('border-red-500');
+          }
+          if (errorMsg) {
+            errorMsg.classList.remove('hidden');
+            errorMsg.classList.add('opacity-100');
+          }
+          setTimeout(() => {
+            if (passwordInput) passwordInput.classList.remove('border-red-500');
+            if (errorMsg) {
+              errorMsg.classList.add('hidden');
+              errorMsg.classList.remove('opacity-100');
+            }
+          }, 2000);
+        }
+      });
+    }
+  });
 </script>
 
 <style>
