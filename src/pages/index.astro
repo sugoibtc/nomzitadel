@@ -104,10 +104,12 @@ const latestPosts = [
           <div class="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left xl:pr-8 relative">
             <HeroText client:load />
            
-           <HeroButtons client:load />
+           <div class="hidden lg:block w-full mt-4">
+             <HeroButtons client:load />
+           </div>
           </div>
 
-          <div class="lg:col-span-5 flex flex-col h-full min-h-[500px]">
+          <div class="hidden lg:flex lg:col-span-5 flex-col h-full min-h-[500px]">
               <HeroCarousel client:load />
           </div>
        </div>
@@ -181,9 +183,9 @@ const latestPosts = [
           {bounties.slice(0, 1).map((bounty) => (
              <BountyCard {...bounty} />
           ))}
-          {/* Empty + Slots */}
+          {/* Empty + Slots (Hidden on Mobile for brevity) */}
           {Array(3).fill(null).map(() => (
-            <a href="#" class="h-full min-h-[160px] rounded-xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center hover:bg-white/10 transition-all duration-300 group">
+            <a href="#" class="hidden sm:flex h-full min-h-[160px] rounded-xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent items-center justify-center hover:bg-white/10 transition-all duration-300 group">
               <span class="text-4xl text-white/20 font-light group-hover:text-neon-green group-hover:scale-125 transition-transform duration-300 group-hover:drop-shadow-[0_0_10px_rgba(17,255,68,0.5)]">+</span>
             </a>
           ))}
@@ -337,7 +339,8 @@ const latestPosts = [
       });
     }, {
       root: null, // use viewport
-      threshold: 0.2 // Trigger when 20% of the section is visible
+      threshold: 0.05, // Trigger when 5% of the section is visible to ensure it fires on tall mobile sections
+      rootMargin: "0px 0px -50px 0px"
     });
 
     sections.forEach(section => observer.observe(section));
