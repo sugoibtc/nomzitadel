@@ -2,7 +2,6 @@
 // LockScreen.astro
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.jpg';
-const password = "kainesimp321";
 ---
 
 <div id="site-lock-screen" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center min-h-screen cyber-grid">
@@ -53,8 +52,17 @@ const password = "kainesimp321";
   const errorMsg = document.getElementById('lock-error');
   const appContent = document.getElementById('app-content');
 
-  // Hardcoded target
-  const TARGET = "kainesimp321";
+  // Hardcoded hashed target array to prevent raw string matching
+  const TARGET_HASH = "c08c56cca7a12b674ab1369e0907a045be169830b317c7ffda6f62a262bd047c";
+
+  async function hashPassword(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  }
 
   // Check auth state immediately
   if (localStorage.getItem('nomSiteAccess') === 'granted') {
@@ -73,10 +81,13 @@ const password = "kainesimp321";
   }
 
   if (lockForm) {
-    lockForm.addEventListener('submit', (e) => {
+    lockForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // @ts-ignore
-      if (passwordInput && passwordInput.value === TARGET) {
+      
+      const inputVal = passwordInput ? passwordInput.value : '';
+      const inputHash = await hashPassword(inputVal);
+
+      if (inputHash === TARGET_HASH) {
         localStorage.setItem('nomSiteAccess', 'granted');
         
         // Aesthetic fade out of lock screen
@@ -91,7 +102,6 @@ const password = "kainesimp321";
         }, 500);
       } else {
         if (passwordInput) {
-          // @ts-ignore
           passwordInput.value = '';
           passwordInput.classList.add('border-red-500');
         }
